@@ -1,7 +1,7 @@
 # Dive-into-Docker
 动手学Docker
 
-![docker](./images/docker_logo.png)
+<div align = "center"><image src="./images/docker_logo.png" width = "300" height = "295" alt="axis" align=center /></div>
 
 *注：建议使用Linux系统，这样更贴近生产环境。可以使用云服务器或者虚拟机等*
 
@@ -24,7 +24,7 @@
 >
 > **Docker** 使用 `Google` 公司推出的 [Go 语言](https://golang.org/) 进行开发实现，基于 `Linux` 内核的 [cgroup](https://zh.wikipedia.org/wiki/Cgroups)，[namespace](https://en.wikipedia.org/wiki/Linux_namespaces)，以及 [OverlayFS](https://docs.docker.com/storage/storagedriver/overlayfs-driver/) 类的 [Union FS](https://en.wikipedia.org/wiki/Union_mount) 等技术，对进程进行封装隔离，属于 [操作系统层面的虚拟化技术](https://en.wikipedia.org/wiki/Operating-system-level_virtualization)。由于隔离的进程独立于宿主和其它的隔离的进程，因此也称其为容器。最初实现是基于 [LXC](https://linuxcontainers.org/lxc/introduction/)，从 0.7 版本以后开始去除 `LXC`，转而使用自行开发的 [libcontainer](https://github.com/docker/libcontainer)，从 1.11 开始，则进一步演进为使用 [runC](https://github.com/opencontainers/runc) 和 [containerd](https://github.com/containerd/containerd)。
 >
-> ![Docker 架构](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/media/docker-on-linux.png)图 1.4.1.1 - Docker 架构
+> ![Docker 架构](https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/media/docker-on-linux.png)
 >
 > > `runc` 是一个 Linux 命令行工具，用于根据 [OCI容器运行时规范](https://github.com/opencontainers/runtime-spec) 创建和运行容器。
 > >
@@ -36,11 +36,7 @@
 >
 > ![传统虚拟化](https://yeasy.gitbooks.io/docker_practice/introduction/_images/virtualization.png)
 >
-> 图 1.4.1.2 - 传统虚拟化
->
 > ![Docker](https://yeasy.gitbooks.io/docker_practice/introduction/_images/docker.png)
->
-> 图 1.4.1.3 - Docker
 
 ## [为什么要用Docker](#content)
 
@@ -95,7 +91,56 @@
 
 ## [Docker初体验](#content)
 
-我们用docker来搭建一个wordpress站点。
+我们用Docker来搭建一个wordpress站点。
+
+首先创建一个`docker-compose.yml`文件。
+
+```dockerfile
+version: '3'
+
+services:
+
+  wordpress:
+    image: wordpress
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql
+    environment:
+      WORDPRESS_DB_HOST: mysql
+      WORDPRESS_DB_PASSWORD: root
+    networks:
+      - my-bridge
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - my-bridge
+
+volumes:
+  mysql-data:
+
+networks:
+  my-bridge:
+    driver: bridge
+```
+
+然后在将终端切到文件所在的目录下，执行`docker-compose up`命令。
+
+![docker-compose-up](./images/docker-compose-up.png)
+
+等待安装完成后，在浏览器输入`安装机器的ip地址:8000`就可以看到wordpress的安装界面。
+
+
+
+再对比一下不使用Docker方式：[安装wordpress](https://codex.wordpress.org/zh-cn:安装_WordPress)。你就能立刻对比出使用Docker的好处，而且如果后期存在站点迁移或更换服务器等操作，使用传统方法的开销是巨大的。
+
+
 
 
 
