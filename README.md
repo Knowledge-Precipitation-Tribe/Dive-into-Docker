@@ -94,6 +94,8 @@
 
 详情请参考官网：[Docker文档官网](https://docs.docker.com/)
 
+---
+
 国内可能在下载镜像时较慢，可以使用国内镜像加速：
 
 以CentOS7为例，请在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）
@@ -101,7 +103,8 @@
 ```json
 {
   "registry-mirrors": [
-    "https://registry.docker-cn.com"
+    "https://dockerhub.azk8s.cn",
+    "https://hub-mirror.c.163.com"
   ]
 }
 ```
@@ -114,6 +117,10 @@
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
+
+
+
+**若想要快速练习Docker，可以使用Docker在线版本：[Play with Docker](https://labs.play-with-docker.com/)，环境的保存时间有限**
 
 ## [Docker初体验](#content)
 
@@ -174,6 +181,12 @@ networks:
 
 Image文件可以看作是我们要使用的运行环境的一个模版。任何两台电脑都安装了Docker的话，只要你们使用的image相同，那么加载出来的container就是相同的。
 
+Docker的Image是分层的，通过改变某层就可以形成一个新的镜像
+
+Todo:
+
+完善docker hub上的内容。
+
 ### [容器Container](#content)
 
 Docker通过Image加载出来的就是容器，其实质是一个进程，所以它可以拥有自己独立的文件系统，网络等等。我们可以将我们的整体开发环境打包成镜像，在服务器上将此镜像加载为容器，对外界提供服务，就像刚才的那个wordpess案例一样。
@@ -182,11 +195,117 @@ Docker通过Image加载出来的就是容器，其实质是一个进程，所以
 
 我们的镜像不可能只保存在本地，为了方便所有机器都能获取到指定的镜像，所以就需要一个仓库来保存所有镜像。最常用的公开服务是官方的[Docker hub](https://hub.docker.com/)。你也可以搭建自己私有的仓库服务。
 
+Todo：
+
+完善docker hub内容，之后将自己创建的image推送到docker hub上。
+
 ---
 
 关于以上概念更多内容请看：[基本概念](https://yeasy.gitbooks.io/docker_practice/basic_concept/)
 
 ## [镜像与容器操作](#content)
+
+若使用Linux操作Docker时，发现Docker没有启动们可以使用命令
+
+```bash
+sudo service docker start
+```
+
+来启动Docker服务。
+
+### [查看本地已经存在的Docker 镜像](#content)
+
+```bash
+docker image ls
+docker images
+```
+
+因为Docker的架构与虚拟机不同，所以Docker可以在不同的Image之间共享层，这样可以尽可能的少占用存储空间。
+
+### [如何获取image](#content)
+
+- 通过`docker pull`从远程仓库拉取镜像
+- 通过Dockerfile构建镜像
+
+1.使用docker pull方式例如我们想获取redis的镜像，我们可以通过命令
+
+```bash
+docker pull redis
+```
+
+我们在拉取镜像时也可以指定版本号，否则默认是拉取最新的latest镜像。
+
+```bash
+docker pull redis:alpine3.11
+```
+
+通过docker images再显示拉取下来的镜像
+
+![docker_pull](./images/docker_pull.png)
+
+2.使用Dockerfile方式
+
+我们这里使用c语言编写一个hello world程序，之后将该程序打包到Docker image中。
+
+首先创建单独的文件夹存放与Dockerfile相关的文件，之后创建Dockerfile
+
+![dockerfile](./images/dockerFile.png)
+
+创建hello.c文件，并将其编译为可执行文件hello
+
+```c
+#include<stdio.h>
+
+int main(){
+    printf("Hello World\n");
+}
+```
+
+使用命令进行编译。在centos上通过命令安装编译环境：
+
+```bash
+sudo yum install gcc
+sudo yum install glibc-static
+```
+
+将文件编译为可执行文件
+
+```bash
+gcc -static ello.c -o hello
+```
+
+编辑Dockerfile内容（此处的文件并不规范，仅作为快速上手使用）
+
+```dockerfile
+FROM scratch
+ADD hello /
+CMD ["/hello"]
+```
+
+现在我们来看一下目录下的所有文件
+
+![helloworld](./images/hello-world.png)
+
+根据此Dockerfile创建镜像
+
+```bash
+docker build -t su/hello-world .
+```
+
+其中`-t`之后代表我们要生成镜像的标记，最后有一个`.`不要忘记，代表当前文件夹下。
+
+我们再使用docker images便可以查看到我们刚才创建的image。
+
+![docker-images-hello](./images/docker-images-hello.png)
+
+### [删除image](#content)
+
+使用如下命令删除redis拉取的redis镜像，命令中的redis也可以修改为redis对应的Image ID。
+
+```bash
+docker image rm redis
+docker rmi redis
+```
 
 
 
