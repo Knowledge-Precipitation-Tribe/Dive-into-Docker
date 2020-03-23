@@ -7,6 +7,11 @@
 
 ## content
 
+- <a href = "#什么是Docker">什么是Docker</a>
+- <a href = "#为什么要用Docker">为什么要用Docker</a>
+- <a href = "#Docker安装">Docker安装</a>
+- <a href = "#Docker初体验">Docker初体验</a>
+
 - <a href = "#参考文献">参考文献</a>
 
 
@@ -37,10 +42,8 @@
 >
 > 图 1.4.1.3 - Docker
 
-## [Docker能做什么](#content)
+## [为什么要用Docker](#content)
 
-> # 为什么要使用 Docker？
->
 > 作为一种新兴的虚拟化方式，`Docker` 跟传统的虚拟化方式相比具有众多的优势。
 >
 > ## 更高效的利用系统资源
@@ -80,9 +83,21 @@
 > | 性能       | 接近原生           | 弱于        |
 > | 系统支持量 | 单机支持上千个容器 | 一般几十个  |
 
+
+
+## [Docker安装](#content)
+
+关于Docker的安装较为简单，mac和windows都有对应的安装包，Linux上也有每一步详细的安装步骤。
+
+![docker_install](./images/docker_install.png)
+
+详情请参考官网：[Docker文档官网](https://docs.docker.com/)
+
 ## [Docker初体验](#content)
 
 我们用docker来搭建一个wordpress站点。
+
+
 
 ## [参考文献](#content)
 
