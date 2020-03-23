@@ -19,6 +19,10 @@
   - <a href = "#查看本地已经存在的image">查看本地已经存在的image</a>
   - <a href = "#如何获取image">如何获取image</a>
   - <a href="#删除image">删除image</a>
+  - <a href = "#发布image">发布image</a>
+  - <a href = "#生成container并进入container">生成container并进入container</a>
+  - <a href = "#停止和重启container">停止和重启container</a>
+  - <a href = "#删除container">删除container</a>
 
 - <a href = "#参考文献">参考文献</a>
 
