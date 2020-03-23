@@ -24,6 +24,7 @@
   - <a href = "#停止和重启container">停止和重启container</a>
   - <a href = "#删除container">删除container</a>
   - <a href = "#flask案例实战">flask案例实战</a>
+  - <a href = "#Docker练习场">Docker练习场</a>
 
 - <a href = "#参考文献">参考文献</a>
 
@@ -485,7 +486,11 @@ docker run -d -p 5000:5000 superssssss/flask-hello
 
 ![flask-hello-docker](./images/flask-hello-docker.png)
 
+### [Docker练习场](#content)
 
+学习完以上内容，大家可以参加一下阿里天池的[Docker练习场](https://tianchi.aliyun.com/competition/entrance/231759/introduction)比赛，更进一步熟悉Docker操作。
+
+我的提交在：[tianchi_submit](#content)
 
 ## [参考文献](#content)
 
