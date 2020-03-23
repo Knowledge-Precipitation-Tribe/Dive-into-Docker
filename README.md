@@ -187,13 +187,11 @@ networks:
 
 ### [镜像Image](#content)
 
-Image文件可以看作是我们要使用的运行环境的一个模版。任何两台电脑都安装了Docker的话，只要你们使用的image相同，那么加载出来的container就是相同的。
+Image文件可以看作是我们要使用的运行环境的一个模版。任何两台电脑都安装了Docker的话，只要你们使用的image相同，那么加载出来的container就是相同的。Docker的Image是分层的，通过改变某层就可以形成一个新的镜像
 
-Docker的Image是分层的，通过改变某层就可以形成一个新的镜像
+每个镜像可能会有很多个版本的tag。
 
-Todo:
-
-完善docker hub上的内容。
+![redis-tag](./images/redis-tag.png)
 
 ### [容器Container](#content)
 
@@ -201,11 +199,35 @@ Docker通过Image加载出来的就是容器，其实质是一个进程，所以
 
 ### [仓库Repository](#content)
 
-我们的镜像不可能只保存在本地，为了方便所有机器都能获取到指定的镜像，所以就需要一个仓库来保存所有镜像。最常用的公开服务是官方的[Docker hub](https://hub.docker.com/)。你也可以搭建自己私有的仓库服务。
-
-Todo：
-
-完善docker hub内容，之后将自己创建的image推送到docker hub上。
+> ### Docker Registry
+>
+> 镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，[Docker Registry](https://yeasy.gitbooks.io/docker_practice/repository/registry.html) 就是这样的服务。
+>
+> 一个 **Docker Registry** 中可以包含多个 **仓库**（`Repository`）；每个仓库可以包含多个 **标签**（`Tag`）；每个标签对应一个镜像。
+>
+> 通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 `<仓库名>:<标签>` 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 `latest` 作为默认标签。
+>
+> 以 [Ubuntu 镜像](https://hub.docker.com/_/ubuntu) 为例，`ubuntu` 是仓库的名字，其内包含有不同的版本标签，如，`16.04`, `18.04`。我们可以通过 `ubuntu:16.04`，或者 `ubuntu:18.04` 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 `ubuntu`，那将视为 `ubuntu:latest`。
+>
+> 仓库名经常以 *两段式路径* 形式出现，比如 `jwilder/nginx-proxy`，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。
+>
+> ### Docker Registry 公开服务
+>
+> Docker Registry 公开服务是开放给用户使用、允许用户管理镜像的 Registry 服务。一般这类公开服务允许用户免费上传、下载公开的镜像，并可能提供收费服务供用户管理私有镜像。
+>
+> 最常使用的 Registry 公开服务是官方的 [Docker Hub](https://hub.docker.com/)，这也是默认的 Registry，并拥有大量的高质量的官方镜像。除此以外，还有 [CoreOS](https://coreos.com/) 的 [Quay.io](https://quay.io/repository/)，CoreOS 相关的镜像存储在这里；Google 的 [Google Container Registry](https://cloud.google.com/container-registry/)，[Kubernetes](https://kubernetes.io/) 的镜像使用的就是这个服务。
+>
+> 由于某些原因，在国内访问这些服务可能会比较慢。国内的一些云服务商提供了针对 Docker Hub 的镜像服务（`Registry Mirror`），这些镜像服务被称为**加速器**。常见的有 [阿里云加速器](https://cr.console.aliyun.com/#/accelerator)、[DaoCloud 加速器](https://www.daocloud.io/mirror#accelerator-doc) 等。使用加速器会直接从国内的地址下载 Docker Hub 的镜像，比直接从 Docker Hub 下载速度会提高很多。在 [安装 Docker](https://yeasy.gitbooks.io/docker_practice/install/mirror.html) 一节中有详细的配置方法。
+>
+> 国内也有一些云服务商提供类似于 Docker Hub 的公开服务。比如 [网易云镜像服务](https://c.163.com/hub#/m/library/)、[DaoCloud 镜像市场](https://hub.daocloud.io/)、[阿里云镜像库](https://cr.console.aliyun.com/) 等。
+>
+> ### 私有 Docker Registry
+>
+> 除了使用公开服务外，用户还可以在本地搭建私有 Docker Registry。Docker 官方提供了 [Docker Registry](https://hub.docker.com/_/registry/) 镜像，可以直接使用做为私有 Registry 服务。在 [私有仓库](https://yeasy.gitbooks.io/docker_practice/repository/registry.html) 一节中，会有进一步的搭建私有 Registry 服务的讲解。
+>
+> 开源的 Docker Registry 镜像只提供了 [Docker Registry API](https://docs.docker.com/registry/spec/api/) 的服务端实现，足以支持 `docker` 命令，不影响使用。但不包含图形界面，以及镜像维护、用户管理、访问控制等高级功能。在官方的商业化版本 [Docker Trusted Registry](https://docs.docker.com/datacenter/dtr/2.0/) 中，提供了这些高级功能。
+>
+> 除了官方的 Docker Registry 外，还有第三方软件实现了 Docker Registry API，甚至提供了用户界面以及一些高级功能。比如，[Harbor](https://github.com/goharbor/harbor) 和 [Sonatype Nexus](https://yeasy.gitbooks.io/docker_practice/repository/nexus3_registry.html)。
 
 ---
 
@@ -414,7 +436,56 @@ docker container rm b6a
 
 ### [flask案例实战](#content)
 
-flask案例
+本案例我们使用python的flask框架搭建一个简易的可访问的网站。
+
+首先编写python程序，文件名为app.py
+
+```python
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello():
+    return "hello docker\n"
+if __name__ == '__main__':
+    app.run(host="0.0.0.0", port=5000)
+```
+
+之后编写Dockerfile文件
+
+```dockerfile
+FROM python:2.7
+LABEL maintainer="123<123@gmail.com>"
+RUN pip install flask
+COPY app.py /app/
+WORKDIR /app
+EXPOSE 5000
+CMD ["python", "app.py"]
+
+```
+
+这个Dockerfile包含更多的内容，我们这个Dockerfile是以`python:2.7`为基础镜像，其中`maintainer`为此Dockerfile文件的维护人员，方便其他使用者联系。接下来的`RUN`命令安装了flask框架，`COPY`命令将文件夹下的app.py拷贝到镜像文件下的`/app/`目录下，并通过`WORKDIR`命令将当前的工作目录设置为`/app`，并将镜像的5000端口`EXPOSE`开放出去提供访问，最后的`CMD`命令执行这个app.py文件。我们来看一下现在文件夹下存在哪些内容
+
+![flask-hello-world](./images/flask-hello-world.png)
+
+然后构建一下镜像，需要一段时间。
+
+```bash
+docker build -t superssssss/flask-hello .
+```
+
+
+
+然后我们将镜像加载为容器运行
+
+```bash
+docker run -d -p 5000:5000 superssssss/flask-hello
+```
+
+`-p`参数将容器的5000端口映射到电脑的5000端口，这样通过`电脑的ip地址:5000`就可以访问这个容器提供的服务了。
+
+![flask-hello-docker](./images/flask-hello-docker.png)
+
+
 
 ## [参考文献](#content)
 
