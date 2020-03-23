@@ -16,6 +16,9 @@
   - <a href = "#容器Container">容器Container</a>
   - <a href = "#仓库Repository">仓库Repository</a>
 - <a href = "#镜像与容器操作">镜像与容器操作</a>
+  - <a href = "#查看本地已经存在的image">查看本地已经存在的image</a>
+  - <a href = "#如何获取image">如何获取image</a>
+  - <a href="#删除image">删除image</a>
 
 - <a href = "#参考文献">参考文献</a>
 
@@ -213,7 +216,7 @@ sudo service docker start
 
 来启动Docker服务。
 
-### [查看本地已经存在的Docker 镜像](#content)
+### [查看本地已经存在的image](#content)
 
 ```bash
 docker image ls
@@ -247,11 +250,7 @@ docker pull redis:alpine3.11
 
 我们这里使用c语言编写一个hello world程序，之后将该程序打包到Docker image中。
 
-首先创建单独的文件夹存放与Dockerfile相关的文件，之后创建Dockerfile
-
-![dockerfile](./images/dockerFile.png)
-
-创建hello.c文件，并将其编译为可执行文件hello
+首先创建单独的文件夹存放与Dockerfile相关的文件,创建hello.c文件，并将其编译为可执行文件hello
 
 ```c
 #include<stdio.h>
@@ -274,7 +273,7 @@ sudo yum install glibc-static
 gcc -static ello.c -o hello
 ```
 
-编辑Dockerfile内容（此处的文件并不规范，仅作为快速上手使用）
+创建并编辑Dockerfile内容（此处的文件并不规范，仅作为快速上手使用）
 
 ```dockerfile
 FROM scratch
@@ -297,6 +296,8 @@ docker build -t su/hello-world .
 我们再使用docker images便可以查看到我们刚才创建的image。
 
 ![docker-images-hello](./images/docker-images-hello.png)
+
+关于更多Dockerfile语法规则请查看：[Dockerfile 指令详解](https://yeasy.gitbooks.io/docker_practice/image/dockerfile/)
 
 ### [删除image](#content)
 
