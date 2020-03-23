@@ -490,7 +490,7 @@ docker run -d -p 5000:5000 superssssss/flask-hello
 
 学习完以上内容，大家可以参加一下阿里天池的[Docker练习场](https://tianchi.aliyun.com/competition/entrance/231759/introduction)比赛，更进一步熟悉Docker操作。
 
-我的提交在：[tianchi_submit](#content)
+我的提交在：[tianchi_submit](https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker/tree/master/tianchi_submit)
 
 ## [参考文献](#content)
 
