@@ -162,7 +162,7 @@ networks:
 
 ![docker-compose-up](./images/docker-compose-up.png)
 
-等待安装完成后，在浏览器输入`安装机器的ip地址:8000`就可以看到wordpress的安装界面。
+等待安装完成后，在浏览器输入`执行命令的机器的ip地址:8000`就可以看到wordpress的安装界面。
 
 ![wordpress](./images/wordpress.png)
 
