@@ -220,7 +220,7 @@ sudo service docker start
 
 ```bash
 docker image ls
-docker images
+#或者docker images
 ```
 
 因为Docker的架构与虚拟机不同，所以Docker可以在不同的Image之间共享层，这样可以尽可能的少占用存储空间。
@@ -305,7 +305,78 @@ docker build -t su/hello-world .
 
 ```bash
 docker image rm redis
-docker rmi redis
+#或者docker rmi redis
+```
+
+### [加载image生成container并进入container](#content)
+
+我们先加载一下刚才我们自己创建的image，通过一下命令运行
+
+```bash
+docker run su/hello-world
+```
+
+我们可以看到输出结果
+
+![docker-run](./images/docker-run.png)
+
+刚才使用`docker run`命令就是将我们创建的hello-world镜像加载成容器运行。
+
+我们通过此命令可以查看到container的运行情况
+
+```bash
+docker container ls -a
+#或者docker	ps -a
+```
+
+因为通过此方式创建的容器运行完会直接退出，所以需要加上`-a`参数。
+
+![docker-container-ls](./images/docker-container-ls.png)
+
+---
+
+我们在来看一个centos的案例。
+
+```bash
+docker run -d centos /bin/bash
+```
+
+我们本地虽然没有centos的镜像，但是如果我们直接run的话，docker会自动从网上将centos的镜像拉取下来，并加载成容器，其中的`-d`参数会使当前的容器转为后台执行，我们可以使用命令来查看一下容器状态。
+
+![docker-centos-ps](./images/docker-centos-ps.png)
+
+在`STATUS`一栏可以查看容器的状态，现在centos这个镜像是`UP`状态。然后再通过`docker exec`命令进入容器
+
+```bash
+docker exec -it b6a /bin/bash
+```
+
+其中`-it`参数可以使终端以交互式的运行，并执行`/bin/bash`命令，b6a就可以代表这个centos容器对应的CONTAINER ID。
+
+![centos-ls](./images/centos-ls.png)
+
+进入容器之后我们就可以配置我们需要的环境或者安装需要的服务。
+
+在终端中输入`exit`退出容器。
+
+### [停止和重启container](#content)
+
+对于现在运行的container我们可以使其停止运行或者将已经停止的container重新启动
+
+```bash
+docker container stop b6a
+docker container start b6a
+```
+
+
+
+### [删除container](#content)
+
+对于我们已经不再需要的容器，我们可以将其删除。
+
+```bash
+docker container rm b6a
+#或者docker rm b6a
 ```
 
 
