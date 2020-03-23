@@ -308,7 +308,33 @@ docker image rm redis
 #或者docker rmi redis
 ```
 
-### [加载image生成container并进入container](#content)
+### [发布image](#content)
+
+为了将我们自己创建的image发布，我们需要在Docker Hub上注册账号，并且在生成镜像时，-t后面要接Docker Hub用户名/镜像名称。我们已经生成了一个新的hello world镜像。
+
+![docker-superssssss-helloworld](./images/docker-superssssss-helloworld.png)
+
+首先通过docker login命令登陆。
+
+![docker-login](./images/docker-login.png)
+
+推送自己的镜像到Docker Hub上
+
+```bash
+docker push superssssss/hello-world:latest
+```
+
+**注意你在使用过程中需要将superssssss修改为自己的账户名，`:`后面接的是镜像版本。**
+
+![docker-hub](./images/docker-hub-pushd.png)
+
+我们就可以在Docker Hub上查看到刚才push上去的镜像了。
+
+TODO:
+
+关联Github自动构建。
+
+### [生成container并进入container](#content)
 
 我们先加载一下刚才我们自己创建的image，通过一下命令运行
 
