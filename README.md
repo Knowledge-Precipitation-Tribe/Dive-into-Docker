@@ -684,7 +684,110 @@ docker run -d --link redis -p 5000:5000 --name flask-redis -e REDIS_HOST=redis s
 
 ### [Docker多机网络](#content)
 
-Overlay Network
+刚才我们已经成功的实现了flask-redis应用程序，但是还存在一个问题，我们的服务可能是访问量很大的一个服务，这时需要我们将redis和flask部署到不同的服务器上，我们怎么才能让这两个部署在不同服务器上的容器相互通信呢？
+
+![flask-redis-multi](./images/flask-redis-multi.png)
+
+两个容器之间数据的传递使用的技术是VXLAN，他是一个overlay网络的实现，更多内容可以参考：[关于VLAN和VXLAN的理解](https://blog.csdn.net/octopusflying/article/details/77609199)。
+
+想要实现两个容器进行通信我们需要一个技术来支持就是etcd，关于etcd的更多内容大家可以查看：[Etcd 使用入门](https://www.hi-linux.com/posts/40915.html)，[高可用分布式存储 etcd 的实现原理](https://draveness.me/etcd-introduction)。etcd 的官方将它定位成一个可信赖的分布式键值存储服务，它能够为整个分布式集群存储一些关键数据，协助分布式集群的正常运转。也就是我们的两台服务器要分别在etcd服务上进行注册，以便于互相识别。
+
+### [flask-redis多机实战](#content)
+
+接下来我们将之前的那个flask-redis实战转换为多机的实战
+
+首先准备两台服务器，我这里准备了两台服务器分别是node1和node2，他们的ip地址分别是：`192.168.205.10`和`192.168.205.11`
+
+接下来在node1节点上运行命令
+
+```bash
+vagrant@node1:~$ wget https://github.com/coreos/etcd/releases/download/v3.0.12/etcd-v3.0.12-linux-amd64.tar.gz
+vagrant@node1:~$ tar zxvf etcd-v3.0.12-linux-amd64.tar.gz
+vagrant@node1:~$ cd etcd-v3.0.12-linux-amd64
+vagrant@node1:~$ nohup ./etcd --name docker-node1 --initial-advertise-peer-urls http://192.168.205.10:2380 \
+--listen-peer-urls http://192.168.205.10:2380 \
+--listen-client-urls http://192.168.205.10:2379,http://127.0.0.1:2379 \
+--advertise-client-urls http://192.168.205.10:2379 \
+--initial-cluster-token etcd-cluster \
+--initial-cluster docker-node1=http://192.168.205.10:2380,docker-node2=http://192.168.205.11:2380 \
+--initial-cluster-state new&
+```
+
+之后在node2上运行命令
+
+```bash
+vagrant@node2:~$ wget https://github.com/coreos/etcd/releases/download/v3.0.12/etcd-v3.0.12-linux-amd64.tar.gz
+vagrant@node2:~$ tar zxvf etcd-v3.0.12-linux-amd64.tar.gz
+vagrant@node2:~$ cd etcd-v3.0.12-linux-amd64/
+vagrant@node2:~$ nohup ./etcd --name docker-node2 --initial-advertise-peer-urls http://192.168.205.11:2380 \
+--listen-peer-urls http://192.168.205.11:2380 \
+--listen-client-urls http://192.168.205.11:2379,http://127.0.0.1:2379 \
+--advertise-client-urls http://192.168.205.11:2379 \
+--initial-cluster-token etcd-cluster \
+--initial-cluster docker-node1=http://192.168.205.10:2380,docker-node2=http://192.168.205.11:23
+```
+
+检查一下etcd的状态：
+
+```bash
+vagrant@node2:~/etcd-v3.0.12-linux-amd64$ ./etcdctl cluster-health
+```
+
+接下来我们要重启docker服务
+
+在node1上运行命令
+
+```bash
+sudo service docker stop
+sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store=etcd://192.168.205.10:2379 --cluster-advertise=192.168.205.10:2375&
+```
+
+
+
+在node2上运行命令
+
+```bash
+sudo service docker stop
+sudo /usr/bin/dockerd -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock --cluster-store=etcd://192.168.205.11:2379 --cluster-advertise=192.168.205.11:2375&
+```
+
+
+
+接下来我们在node1上创建一个名为demo的overlay网络
+
+```bash
+docker network create -d overlay demo
+```
+
+我们现在在node1和node2上查看一下网络情况
+
+![docker-node1-demo](./images/docker-node1-demo.png)
+
+![docker-node2-demo](./images/docker-node2-demo.png)
+
+我们虽然没有在node2上创建demo网络，但是通过etcd会同步的进行创建，这样我们两台服务器上都有了一个叫做demo的网络，接下来我们创建容器时就可以将demo作为容器的网络。
+
+首先在node2上创建redis容器
+
+```bash
+docker run -d --name redis --net demo redis
+```
+
+
+
+接下来在node1上创建flask容器
+
+```bash
+docker run -d --net demo -p 5000:5000 --name flask-redis -e REDIS_HOST=redis su/flask-redis
+```
+
+
+
+接下来我们看一下实验结果
+
+![flask-redis-multi1](./images/flask-redis-multi1.png)
+
+![flask-redis-multi2](./images/flask-redis-multi2.png)
 
 ## [Docker数据持久化存储](#content)
 
@@ -711,3 +814,5 @@ Overlay Network
 [2] yeasy: [Docker从入门到实战](https://yeasy.gitbooks.io/docker_practice/introduction/what.html)
 
 [3] Jimmy Song: [Kubernetes Handbook](https://jimmysong.io/kubernetes-handbook/)
+
+[4] docker/labs: [labs](https://github.com/docker/labs)
