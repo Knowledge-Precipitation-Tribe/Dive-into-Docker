@@ -236,6 +236,8 @@ Docker通过Image加载出来的就是容器，其实质是一个进程，所以
 
 ---
 
+![conpect](./images/concept.png)
+
 关于以上概念更多内容请看：[基本概念](https://yeasy.gitbooks.io/docker_practice/basic_concept/)
 
 ## [镜像与容器操作](#content)
@@ -366,6 +368,10 @@ TODO:
 
 关联Github自动构建。
 
+![useImage](./images/useImage.png)
+
+---
+
 ### [生成container并进入container](#content)
 
 我们先加载一下刚才我们自己创建的image，通过一下命令运行
@@ -438,6 +444,10 @@ docker container rm b6a
 ```
 
 
+
+![containerOp](./images/containerOp.png)
+
+---
 
 ### [flask案例实战](#content)
 
@@ -515,6 +525,8 @@ docker run -d -p 5000:5000 superssssss/flask-hello
 
 
 ## [CI/CD](#content)
+
+
 
 ## [参考文献](#content)
 
