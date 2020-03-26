@@ -514,11 +514,11 @@ docker run -d -p 5000:5000 superssssss/flask-hello
 
 这里介绍两个几个常用命令：
 
-- ping：查看指定IP是否可达 `ping 192.168.0.1`
-- telnet：查看服务是否可用 `telnet 192.168.0.1 80`，有的地址不可以ping但是可以用telnet
-- curl：
-- wget：
-- ip a：显示IP地址
+- ping：查看指定IP是否可达 `ping 192.168.0.1`。
+- telnet：查看服务是否可用 `telnet 192.168.0.1 80`，有的地址不可以ping但是可以用telnet。
+- curl：用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+- wget：一个下载文件的工具。
+- ip a：显示IP地址。
 
 查看docker的网络：
 
@@ -579,7 +579,33 @@ docker run -d --name test2 --link test1 busybox /bin/sh -c "while true;do sleep 
 
 我们也可以手动创建一个network，在创建容器时将容器连接到我们自己创建的network上，此时如果我们在自建的网络上创建两个容器，他们两个之间是默认`link`好的。
 
+### [Docker端口映射](#content)
 
+我们启动一个容器里面一定会运行一些服务，但是这些服务我们如何才能让外界访问到呢？首先肯定是连接好网络，这之前我们已经说过了。另一个重要的就是端口映射。
+
+假如说我们在服务器上启动nginx的服务，他默认是通过80端口来访问的，但是我们如何通过访问服务器的80端口来默认的访问到容器中的nginx服务呢？我们在运行容器时可以使用这个命令：
+
+```bash
+docker run --name web -d -p 80:80 nginx
+```
+
+
+
+我们通过-p参数来将容器的80端口映射到服务器的80端口上，这样我们访问服务器的80端口时就会直接请求nginx服务。
+
+我们容器的IP地址：
+
+![docker-web-ip](./images/docker-web-ip.png)
+
+Linux服务器的IP地址分别是：
+
+![linux-ip](./images/linux-ip.png)
+
+然后我们访问Linux服务器的80端口：
+
+![nginx-welcome](./images/nginx-welcome.png)
+
+可以看到确实是可以成功映射的。
 
 ### [Docker多机网络](#content)
 
