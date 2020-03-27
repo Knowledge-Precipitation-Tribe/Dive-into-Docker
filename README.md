@@ -35,6 +35,9 @@
 - <a href = "#Docker多容器部署">Docker多容器部署</a>
 - <a href = "#容器编排">容器编排</a>
 - <a href = "#CI/CD">CI/CD</a>
+  - <a href = "#搭建Gitlab服务器">搭建Gitlab服务器</a>
+  - <a href = "#gitlab-ci">Gitlab CI</a>
+  - <a href = "#flask-CI/CD实战">flask CI/CD实战</a>
 - <a href = "#参考文献">参考文献</a>
 
 
