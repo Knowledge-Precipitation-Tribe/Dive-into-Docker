@@ -1121,9 +1121,9 @@ sudo /etc/init.d/network restart
 
 此时我们一个完整一个pipline的流程已经完成，接下来我们通过几个案例来加深一下使用。
 
+Gitlab官方也提供了一些案例，大家也可以动手尝试一下：[GitLab CI/CD Examples](https://docs.gitlab.com/ee/ci/examples/README.html)
 
-
-### [python实战](#content)
+### [flask CI/CD实战](#content)
 
 
 
