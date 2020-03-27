@@ -798,7 +798,123 @@ docker run -d --net demo -p 5000:5000 --name flask-redis -e REDIS_HOST=redis su/
 
 ## [Docker数据持久化存储](#content)
 
+知道现在我们所有操作都是基于容器的，也就是我们的所有数据的生命周期是和容器一样的，如果容器被删除了，那么我们的所有数据也就没有了，这肯定不是我们想要看到的，我们想要一些数据尽管容器不存在了，但仍然可以保存，所以就需要Docker的持久化技术。
 
+目前Docker可以通过两种方式实现持久化：
+
+- 基于本地文件系统的Volume：将服务器文件夹挂载到容器中，这样就实现了容器数据的持久化。
+- 基于plugin的Volume：挂载NAS服务器或者其他云服务提供的服务。
+
+基于本地文件系统的Volume有两种创建方式：
+
+- docker容器自动创建一个Volume，映射到服务器的指定位置。这种方式创建的Volume也不是凭空产生的，而是容器对应的Dockerfile中已经创建了volume，只不过没有指定具体挂载到服务器的哪个文件夹。
+- 我们在创建容器时直接指定容器的哪个文件夹要挂载到服务器的哪个位置。
+
+**接下来我们以redis为例：**
+
+我们先看一下redis的[Dockerfile](https://github.com/docker-library/mysql/blob/d284e15821ac64b6eda1b146775bf4b6f4844077/5.7/Dockerfile)，在其中它指定了对应的Volume
+
+![redis-volume](./images/redis-volume.png)
+
+之后我们在服务器上创建一个redis容器
+
+```bash
+docker run -d --name redis redis
+```
+
+
+
+接下来我们使用命令查看一下容器中的Volume
+
+```bash
+docker volume ls
+```
+
+
+
+可以看到通过创建redis镜像已经为我们自动创建了一个volume
+
+![redis-volume2](./images/redis-volume2.png)
+
+我们也可以使用inspect来查看一下vloume的具体细节(后面记得修改为自己的VOLUME NAME)
+
+```bash
+docker volume inspect 64b3
+```
+
+
+
+可以看到它自动将/data挂载到的服务器路径
+
+![redis-volume-inspect](./images/redis-volume-inspect.png)
+
+如果此时我们将容器删除，**但是查看volume它仍然存在**。但是这个VOLUME NAME的名字因为是随机的，看起来非常不方便，所以我们可以在创建容器时为他指定名称
+
+```bash
+docker run -d -v redis2:/data --name redis2 redis
+```
+
+
+
+之后我们再次查看一下对应的volume，他的VOLUME NAME已经修改为我们指定的名字
+
+![redis-volume3](./images/redis-volume3.png)
+
+然后大家可以尝试一下在redis中创建一些数据，然后将当前的redis容器删除，再重新启动一个redis并挂载到原来的文件路径上，看一下redis中的数据是否仍然存在。
+
+---
+
+接下来我们介绍下一种持久化的存储方式：Bind Mouting。这种方式不需要我们在Dockerfile中创建volume，而是在启动容器时直接指定服务器的文件路径和要映射容器内的文件路径。
+
+这里我们使用nginx来演示这种持久化方式：
+
+首先我们来创建一个Dockerfile
+
+```dockerfile
+FROM nginx:latest
+WORKDIR /usr/share/nginx/html
+COPY index.html index.html
+```
+
+
+
+接下来通过这个Dockerfile构建一下镜像
+
+```bash
+docker build -t su/my-nginx .
+```
+
+
+
+之后启动容器
+
+```bash
+docker run -d -v $(pwd):/usr/share/nginx/html -p 80:80 --name web su/my-nginx
+```
+
+
+
+接下来我们进到容器中看一下
+
+```bash
+docker exec -it web /bin/bash
+```
+
+
+
+此时在容器中我们新创建一个文件
+
+
+
+这时我们再回到服务器中查看一下
+
+
+
+可以看到容器和服务器他们两个是同步的
+
+
+
+这样的好处就是我们并不需要进入到容器中进行编辑文件，我们只需要在服务器上编辑文件就可以将修改同步到容器中实时的提供服务。
 
 ## [Docker多容器部署](#content)
 
