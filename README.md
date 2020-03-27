@@ -892,7 +892,9 @@ docker build -t su/my-nginx .
 docker run -d -v $(pwd):/usr/share/nginx/html -p 80:80 --name web su/my-nginx
 ```
 
+我们是将当前的文件夹挂载容器中
 
+![my-nginx-ls](./images/my-nginx-ls.png)
 
 接下来我们进到容器中看一下
 
@@ -904,17 +906,15 @@ docker exec -it web /bin/bash
 
 此时在容器中我们新创建一个文件
 
+![my-nginx-docker-ls](./images/my-nginx-docker-ls.png)
 
+![my-nginx-newfile](./images/my-nginx-newfile.png)
 
 这时我们再回到服务器中查看一下
 
+![my-nginx-newfile-ls](./images/my-nginx-newfile-ls.png)
 
-
-可以看到容器和服务器他们两个是同步的
-
-
-
-这样的好处就是我们并不需要进入到容器中进行编辑文件，我们只需要在服务器上编辑文件就可以将修改同步到容器中实时的提供服务。
+可以看到容器和服务器他们两个是同步的。这样的好处就是我们并不需要进入到容器中进行编辑文件，我们只需要在服务器上编辑文件就可以将修改同步到容器中实时的提供服务。
 
 ## [Docker多容器部署](#content)
 
