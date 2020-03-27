@@ -1035,7 +1035,7 @@ sudo gitlab-ci-multi-runner register
 
 ![token](./images/token.png)
 
-之后我们可以一路回车(在tag那出可以输入一些tag用`,`分隔)，在最后的时候选择shell作为执行。然后我们来看一下服务是否注册成功
+之后我们在tag那里可以输入一些tag，`test,demo`，之后一路回车，在最后的时候选择shell作为执行。然后我们来看一下服务是否注册成功
 
 ```bash
 sudo gitlab-ci-multi-runner list
@@ -1049,9 +1049,45 @@ sudo gitlab-ci-multi-runner list
 
 ![newProject-ci](./images/newProject-ci.png)
 
-接下来我们如何使用这个gitlab-ci呢
+因为gitlab默认的域名是`gitlab.example.com`，所以我们要在gitlab-ci这台机器上修改一下hosts
+
+![hosts](./images/hosts.png)
+
+并执行命令使其立即生效
+
+```bash
+sudo /etc/init.d/network restart
+```
 
 
+
+接下来我们如何使用这个gitlab-ci呢？首先我们要在项目中创建一个名`.gitlab-ci.yml`为的文件，可以直接在网页上创建文件，也可以通过push上传上去。
+
+我们在这里直接在网页上创建文件
+
+![gitlab-ci-yml](./images/gitlab-ci-yml.png)
+
+之后我们直接点击项目的CI/CD的piplines
+
+![piplines](./images/piplines.png)
+
+接下来我们可以看到这个pipline的状态
+
+![pipline-pending](./images/pipline-pending.png)
+
+点击进去可以看到我们这个pipline目前有三个任务
+
+![pipline-1](./images/pipline-1.png)
+
+但是当前创建的任务并不知道该选择哪个ci-runner执行，所以需要修改我们的`.gitlab-ci.yml`文件，在每个job中输入tags
+
+![add-tags](./images/add-tags.png)
+
+然后再来看一下每个job的状态
+
+![job-passed](./images/job-passed.png)
+
+此时我们一个完整一个pipline的流程已经完成，接下来我们通过几个案例来加深一下使用。
 
 ## [参考文献](#content)
 
