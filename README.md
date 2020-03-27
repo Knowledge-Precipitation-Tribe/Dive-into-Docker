@@ -1011,9 +1011,43 @@ sudo gitlab-ctl reconfigure
 
 ### [Gitlab CI](#content)
 
-安装
 
-注册服务
+
+#### 安装gitlab ci runner
+
+
+
+(1) 安装docker
+
+```bash
+curl -sSL https://get.docker.com/ | sh
+```
+
+
+
+(2) 安装gitlab ci runner
+
+```bash
+sudo gitlab-ci-multi-runner status
+```
+
+应该输出：gitlab-runner: Service is running!
+
+(3) 设置docker权限
+
+为了能让gitlab-runner能正确的执行docker命令，需要把gitlab-runner用户添加到docker group里, 然后重启docker和gitlab ci runner
+
+```bash
+sudo usermod -aG docker gitlab-runner
+sudo service docker restart
+sudo gitlab-ci-multi-runner restart
+```
+
+
+
+#### 注册服务
+
+
 
 ```bash
 sudo gitlab-ci-multi-runner register
@@ -1025,9 +1059,7 @@ sudo gitlab-ci-multi-runner register
 
 ![gitlab-ci-register](./images/gitlab-ci-register.png)
 
-输入token
-
-首先我们在gitlab上创建一个newProject项目，在项目的侧边栏进入CI/CD页面
+输入token，首先我们在gitlab上创建一个newProject项目，在项目的侧边栏进入Settings的CI/CD页面
 
 ![newProject-ci-cd](./images/newProject-ci-cd.png)
 
@@ -1035,7 +1067,7 @@ sudo gitlab-ci-multi-runner register
 
 ![token](./images/token.png)
 
-之后我们在tag那里可以输入一些tag，`test,demo`，之后一路回车，在最后的时候选择shell作为执行。然后我们来看一下服务是否注册成功
+回车确认后，在tag那里可以输入一些tag，`test,demo`，之后一路回车，在最后的时候选择shell作为执行。然后我们来看一下服务是否注册成功
 
 ```bash
 sudo gitlab-ci-multi-runner list
@@ -1067,7 +1099,7 @@ sudo /etc/init.d/network restart
 
 ![gitlab-ci-yml](./images/gitlab-ci-yml.png)
 
-之后我们直接点击项目的CI/CD的piplines
+之后我们点击项目的CI/CD的piplines
 
 ![piplines](./images/piplines.png)
 
@@ -1088,6 +1120,12 @@ sudo /etc/init.d/network restart
 ![job-passed](./images/job-passed.png)
 
 此时我们一个完整一个pipline的流程已经完成，接下来我们通过几个案例来加深一下使用。
+
+
+
+### [python实战](#content)
+
+
 
 ## [参考文献](#content)
 
