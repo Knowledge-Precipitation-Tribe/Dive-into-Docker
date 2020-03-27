@@ -1011,6 +1011,46 @@ sudo gitlab-ctl reconfigure
 
 ### [Gitlab CI](#content)
 
+安装
+
+注册服务
+
+```bash
+sudo gitlab-ci-multi-runner register
+```
+
+
+
+输入服务器地址
+
+![gitlab-ci-register](./images/gitlab-ci-register.png)
+
+输入token
+
+首先我们在gitlab上创建一个newProject项目，在项目的侧边栏进入CI/CD页面
+
+![newProject-ci-cd](./images/newProject-ci-cd.png)
+
+![runners](./images/runners.png)
+
+![token](./images/token.png)
+
+之后我们可以一路回车(在tag那出可以输入一些tag用`,`分隔)，在最后的时候选择shell作为执行。然后我们来看一下服务是否注册成功
+
+```bash
+sudo gitlab-ci-multi-runner list
+```
+
+
+
+![ci-runner-list](./images/ci-runner-list.png)
+
+接下来我们回到Gitlab刷新一下，重新进入CI/CD中的Runners，可以看到我们已经多了一个Runner
+
+![newProject-ci](./images/newProject-ci.png)
+
+接下来我们如何使用这个gitlab-ci呢
+
 
 
 ## [参考文献](#content)
