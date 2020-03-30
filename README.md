@@ -6,7 +6,9 @@ description: 动手学Docker
 
 ## Dive-into-Docker
 
-动手学Docker:
+动手学Docker。**Docker 属于容器的一种封装，提供简单易用的容器使用接口。**Docker 将应用程序与该程序的依赖，打包在一个文件里面。运行这个文件，就会生成一个虚拟容器。程序在这个虚拟容器里运行，就好像在真实的物理机上运行一样。有了 Docker，就不用担心环境问题。
+
+总体来说，Docker 的接口相当简单，用户可以方便地创建和使用容器，把自己的应用放入容器。容器还可以进行版本管理、复制、分享、修改，就像管理普通的代码一样。
 
 ![](.gitbook/assets/docker_logo.png)
 
@@ -14,22 +16,42 @@ description: 动手学Docker
 _注：建议使用Linux系统，这样更贴近生产环境。可以使用云服务器或者虚拟机等_
 {% endhint %}
 
-```
-$ give me super-powers
-```
+### 开始之前
 
-{% hint style="info" %}
- Super-powers are granted randomly so please submit an issue if you're not happy with yours.
-{% endhint %}
+在阅读此书之前，最好以下一些前置知识：
 
-Once you're strong enough, save the world:
+* Linux常用操作
+* 准备好的服务器或虚拟机
 
-{% code title="hello.sh" %}
-```bash
-# Ain't no code for that yet, sorry
-echo 'You got to trust me on this, I saved the world'
-```
-{% endcode %}
+### 本书主题
 
+本书以Docker为主要内容，还包括以下几个方面的内容
 
+* 容器编排-k8s
+* CI/CD
+
+### 使用方式
+
+您可以通过以下方式使用本书：
+
+* Github地址：[https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker](https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker)
+* gitbook在线浏览：[https://supeng842499467.gitbook.io/dive-into-docker/](https://supeng842499467.gitbook.io/dive-into-docker/)
+
+### 快速开始：
+
+有以下集中方式可以快速搭建起开发环境：
+
+* 使用Vagrant+VatrulBox或Vmware等搭建虚拟环境，使用vagrant方式可以参考：[https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster](https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster)
+* 使用云服务器搭建开发环境
+* 使用自己的电脑搭建开发环境
+* 使用Docker playground: [https://labs.play-with-docker.com/](https://labs.play-with-docker.com/)
+* 使用k8s palyground: [https://labs.play-with-k8s.com/](https://labs.play-with-k8s.com/)
+
+### 推荐
+
+\[1\] Kubernetes中文指南/云原生应用架构实践手册:[https://jimmysong.io/kubernetes-handbook/](https://jimmysong.io/kubernetes-handbook/)
+
+\[2\] Docker — 从入门到实践：[https://yeasy.gitbooks.io/docker\_practice/](https://yeasy.gitbooks.io/docker_practice/)
+
+\[3\] 系统学习Docker 践行DevOps理念: [https://coding.imooc.com/learn/list/189.html](https://coding.imooc.com/learn/list/189.html)
 
