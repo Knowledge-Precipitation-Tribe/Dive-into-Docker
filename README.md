@@ -145,9 +145,15 @@ $ sudo systemctl restart docker
 
 ## [Docker初体验](#content)
 
-我们用Docker来搭建一个wordpress站点。执行之前确保电脑已经安装docker-compose,[安装步骤](https://docs.docker.com/compose/install/)。在mac和windows上安装Docker时会自动安装docker-compose，Linux上需要手动安装。
+本机首先通过命令
 
-![docker-compose-install](./images/docker-compose-install.png)
+```bash
+docker-compose --version
+```
+
+
+
+查看是否已经安装了Docker Compose。若没有安装请移步<a href = "#docker-compose安装">Docker Compose安装</a>。
 
 首先创建一个`docker-compose.yml`文件。
 
@@ -938,6 +944,123 @@ Docker Compose是一个工具，它支持通过yml文件来定义和配置多个
 ![wordpress-mysql-yml](./images/wordpress-mysql-yml.png)
 
 ### [Docker Compose安装](#content)
+
+一般情况下在mac和windows上安装Docker时会自动安装docker-compose，Linux上需要手动安装。
+
+首先通过命令
+
+```bash
+docker-compose --version
+```
+
+
+
+查看你的服务器是否已经安装好了Docker Compose。若没有安装则继续阅读以下[安装步骤](https://docs.docker.com/compose/install/)。
+
+![docker-compose-install](./images/docker-compose-install.png)
+
+之后
+
+### [Dcoker Compose基本使用](#content)
+
+在创建好`docker-compose.yml`文件后，可以通过这个命令将文件中定义的容器都启动起来，在docker compose中我们更习惯于将每一个容器叫做service。
+
+```bash
+docker-compose up 
+```
+
+
+
+命令后会自动接一个默认值`-f docker-compose.yml`，也就是默认是使用docker-compose.yml文件的,但是直接通过这种方式的话会直接将启动时的输出打印到终端，所以我们常会加上`-d`参数。
+
+```bash
+docker-compose up -d
+```
+
+
+
+接下来可以查看一下我们创建的service状态
+
+```bash
+docker-compose ps
+```
+
+
+
+如何停止已经运行的services呢，可以使用以下两个命令
+
+```bash
+docker-compose stop
+docker-compose down
+```
+
+
+
+其中stop是直接停止services，而down则会停止并删除创建的service，volume和network。
+
+那么如何进入容器呢
+
+```bash
+docker-compose exec mysql bash
+```
+
+
+
+exec后面接的就是我们要进入具体的service的名字，名字后面就是我们要执行的命令。
+
+### [flask-redis Docker Compose实战](#content)
+
+
+
+### [负载均衡](#content)
+
+现在的需求是这样的，我们刚才创建的那个flask-redis服务因为访问的人多现在需要拓展几个容器来同时提供服务，以平衡单个容器的访问压力，我们如何实现这个需求呢？
+
+我们先来看一下现在的情况
+
+![docker-compose-ps](./images/docker-compose-ps.png)
+
+Docker Compose有一个scale参数，通过这个参数可以实现容器的水平拓展。
+
+```bash
+docker-compose up --scale web=3 -d
+```
+
+![docker-compose-scal](./images/docker-compose-scale.png)
+
+我们再通过命令查看一下现在的容器状态
+
+![docker-compose-scale-p](./images/docker-compose-scale-ps.png)
+
+现在可以看到我们有了三个web服务，这三个web会同时对外提供服务，以减轻访问单个容器的压力。
+
+但是现在这样还有一个问题就是我们每个容器都是暴露出自己的端口5000，而且因为本地服务器只有一个8080端口，我们没法让多个容器绑定上去，那我们如何通过访问服务器的地址来自动的映射到其他容器呢？
+
+这时我们就需要haproxy来支持，首先我们修改一下dokcer-compose.yml文件。
+
+
+
+同时将app.py文件也做一些修改
+
+
+
+现在我们来启动一下服务
+
+```bash
+docker-compose up -d
+```
+
+
+
+然后做一下水平拓展
+
+```bash
+docker-compose up --scale web=3 -d
+```
+
+
+
+现在来访问一下服务
 
 
 
