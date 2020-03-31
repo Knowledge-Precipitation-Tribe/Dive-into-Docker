@@ -10,17 +10,21 @@
         "page-toc-button",
         "accordion",
         "click-reveal",
-        "pageview-count"
+        "pageview-count",
+        "github"
     ],
     "pluginsConfig": {
         "tbfed-pagefooter": {
-            "copyright": "Copyright &copy Aron.Li 2019",
+            "copyright": "Copyright &copy knowledge-precipitation.site 2020",
             "modify_label": "该文件修订时间：",
             "modify_format": "YYYY-MM-DD HH:mm:ss"
         },
         "page-toc-button": {
             "maxTocDepth": 2,
             "minTocSize": 2
+        },
+        "github": {
+            "url": "https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker"
         }
     }
 }
