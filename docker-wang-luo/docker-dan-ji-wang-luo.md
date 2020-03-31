@@ -24,12 +24,15 @@ docker network ls
 
 ```bash
 docker run -d --name test1 busybox /bin/sh -c "while true;do sleep 3600;done"
+```
+
+```bash
 docker inspect 0b464e45177b(改成你查看到的NETWORK ID)
 ```
 
-在network的具体细节内我们可以看到containers中包含了我们刚才创建的容器
+在network的具体细节内我们可以看到在containers中包含了我们刚才创建的容器
 
-![](../.gitbook/assets/network-inspect.png)
+![network inspect](../.gitbook/assets/network-inspect.png)
 
 可以看到我们当前的容器是连接到了bridge的网络中。在我们的主机和容器之间会创建一对vethnet以便于容器和主机之间相互通信，在主机的终端上我们可以直接ping通容器的ip地址。
 

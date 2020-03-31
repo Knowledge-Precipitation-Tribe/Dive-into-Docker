@@ -5,7 +5,9 @@
 * 通过`docker pull`从远程仓库拉取镜像
 * 通过Dockerfile构建镜像
 
-1.使用docker pull方式例如我们想获取redis的镜像，我们可以通过命令
+### docker pull拉取镜像
+
+使用docker pull方式例如我们想获取redis的镜像，我们可以通过命令
 
 ```bash
 docker pull redis
@@ -21,7 +23,7 @@ docker pull redis:alpine3.11
 
 ![](../.gitbook/assets/docker_pull.png)
 
-2.使用Dockerfile方式
+### 使用Dockerfile构建镜像
 
 我们这里使用c语言编写一个hello world程序，之后将该程序打包到Docker image中。
 
@@ -50,11 +52,13 @@ gcc -static ello.c -o hello
 
 创建并编辑Dockerfile内容（此处的文件并不规范，仅作为快速上手使用）
 
+{% code title="Dockerfile" %}
 ```text
 FROM scratch
 ADD hello /
 CMD ["/hello"]
 ```
+{% endcode %}
 
 现在我们来看一下目录下的所有文件
 

@@ -1,6 +1,6 @@
 # Gitlab CI
 
-#### **安装gitlab ci runner**
+### **安装gitlab ci runner**
 
 \(1\) 安装docker
 
@@ -26,7 +26,7 @@ sudo service docker restart
 sudo gitlab-ci-multi-runner restart
 ```
 
-#### **注册服务**
+### **注册服务**
 
 ```bash
 sudo gitlab-ci-multi-runner register

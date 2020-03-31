@@ -12,8 +12,10 @@
 * [镜像与容器操作](jing-xiang-yu-rong-qi-cao-zuo/README.md)
   * [查看本地已经存在的image](jing-xiang-yu-rong-qi-cao-zuo/cha-kan-ben-di-yi-jing-cun-zai-de-image.md)
   * [如何获取image](jing-xiang-yu-rong-qi-cao-zuo/ru-he-huo-qu-image.md)
+  * [Dockerfile](jing-xiang-yu-rong-qi-cao-zuo/dockerfile.md)
   * [删除image](jing-xiang-yu-rong-qi-cao-zuo/shan-chu-image.md)
   * [发布image](jing-xiang-yu-rong-qi-cao-zuo/fa-bu-image.md)
+  * [Docker Hub关联Github](jing-xiang-yu-rong-qi-cao-zuo/docker-hub-guan-lian-github.md)
   * [生成container并进入container](jing-xiang-yu-rong-qi-cao-zuo/sheng-cheng-container-bing-jin-ru-container.md)
   * [停止和重启container](jing-xiang-yu-rong-qi-cao-zuo/ting-zhi-he-zhong-qi-container.md)
   * [删除container](jing-xiang-yu-rong-qi-cao-zuo/shan-chu-container.md)
@@ -40,4 +42,5 @@
   * [Gitlab CI](ci-cd/gitlab-ci.md)
   * [flask CI/CD实战](ci-cd/flask-cicd-shi-zhan.md)
 * [参考文献](can-kao-wen-xian.md)
+* [答疑汇总](da-yi-hui-zong.md)
 

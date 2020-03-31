@@ -4,7 +4,9 @@
 
 首先准备两台服务器，我这里准备了两台服务器分别是node1和node2，他们的ip地址分别是：`192.168.205.10`和`192.168.205.11`
 
-接下来在node1节点上运行命令
+我们首先在两个节点上安装etcd服务。
+
+首先在node1节点上运行命令
 
 ```bash
 vagrant@node1:~$ wget https://github.com/coreos/etcd/releases/download/v3.0.12/etcd-v3.0.12-linux-amd64.tar.gz

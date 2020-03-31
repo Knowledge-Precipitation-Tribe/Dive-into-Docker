@@ -10,6 +10,7 @@ docker run -d --name redis redis
 
 之后我们编写一下python文件，名字叫做app.py
 
+{% code title="app.py" %}
 ```python
 from flask import Flask
 from redis import Redis
@@ -29,9 +30,11 @@ def hello():
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
 ```
+{% endcode %}
 
-在创建Dockerfile，并编辑里面的内容
+再创建Dockerfile，并编辑里面的内容
 
+{% code title="Dockerfile" %}
 ```text
 FROM python:2.7
 COPY . /app
@@ -40,6 +43,7 @@ RUN pip install flask redis
 EXPOSE 5000
 CMD [ "python", "app.py" ]
 ```
+{% endcode %}
 
 然后根据Dockerfile创建我们自己的镜像
 

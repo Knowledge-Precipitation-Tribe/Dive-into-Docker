@@ -16,6 +16,7 @@ if __name__ == '__main__':
 
 之后编写Dockerfile文件
 
+{% code title="Dockerfile" %}
 ```text
 FROM python:2.7
 LABEL maintainer="123<123@gmail.com>"
@@ -25,6 +26,7 @@ WORKDIR /app
 EXPOSE 5000
 CMD ["python", "app.py"]
 ```
+{% endcode %}
 
 这个Dockerfile包含更多的内容，我们这个Dockerfile是以`python:2.7`为基础镜像，其中`maintainer`为此Dockerfile文件的维护人员，方便其他使用者联系。接下来的`RUN`命令安装了flask框架，`COPY`命令将文件夹下的app.py拷贝到镜像文件下的`/app/`目录下，并通过`WORKDIR`命令将当前的工作目录设置为`/app`，并将镜像的5000端口`EXPOSE`开放出去提供访问，最后的`CMD`命令执行这个app.py文件。我们来看一下现在文件夹下存在哪些内容
 

@@ -1,6 +1,6 @@
 # 发布image
 
-为了将我们自己创建的image发布，我们需要在Docker Hub上注册账号，并且在生成镜像时，-t后面要接Docker Hub用户名/镜像名称。我们已经生成了一个新的hello world镜像。
+为了将我们自己创建的image发布，我们需要在[Docker Hub](https://hub.docker.com/)上注册账号，并且在生成镜像时，-t后面要接Docker Hub用户名/镜像名称。我们已经生成了一个新的superssssss/hello world镜像。
 
 ![](../.gitbook/assets/docker-superssssss-helloworld.png)
 
@@ -19,10 +19,6 @@ docker push superssssss/hello-world:latest
 ![](../.gitbook/assets/docker-hub-pushd.png)
 
 我们就可以在Docker Hub上查看到刚才push上去的镜像了。
-
-TODO:
-
-关联Github自动构建。
 
 ![](../.gitbook/assets/useimage.png)
 

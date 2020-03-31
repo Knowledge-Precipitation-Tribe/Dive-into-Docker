@@ -6,6 +6,8 @@
 
 详情请参考官网：[Docker文档官网](https://docs.docker.com/)
 
+TODO：完善安装部分
+
 国内可能在下载镜像时较慢，可以使用国内镜像加速：
 
 以CentOS7为例，请在 /etc/docker/daemon.json 中写入如下内容（如果文件不存在请新建该文件）
@@ -19,7 +21,7 @@
 }
 ```
 
-注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。之后重新启动服务。
+注意，一定要保证该文件符合 json 规范，否则 Docker 将不能启动。之后要重新启动Docker服务。
 
 ```bash
 $ sudo systemctl daemon-reload

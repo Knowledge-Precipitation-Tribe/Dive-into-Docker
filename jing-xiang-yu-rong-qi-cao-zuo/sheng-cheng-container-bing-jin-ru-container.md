@@ -12,7 +12,7 @@ docker run su/hello-world
 
 刚才使用`docker run`命令就是将我们创建的hello-world镜像加载成容器运行。
 
-我们通过此命令可以查看到container的运行情况
+我们通过以下命令都可以查看到container的运行情况
 
 ```bash
 docker container ls -a
@@ -22,7 +22,9 @@ docker container ls -a
 docker ps -a
 ```
 
-因为通过此方式创建的容器运行完会直接退出，所以需要加上`-a`参数。
+因为通过此方式刚才的docker run方式创建的容器终端会一直打印容器的log，如果我们使用`control+c`，这样会将刚才创建的容器一起停止。
+
+查看容器默认是只显示运行中的容器，查看包括停止的容器需要加上`-a`参数。
 
 ![](../.gitbook/assets/docker-container-ls.png)
 
@@ -34,7 +36,7 @@ docker ps -a
 docker run -d centos /bin/bash
 ```
 
-我们本地虽然没有centos的镜像，但是如果我们直接run的话，docker会自动从网上将centos的镜像拉取下来，并加载成容器，其中的`-d`参数会使当前的容器转为后台执行，我们可以使用命令来查看一下容器状态。
+我们本地虽然没有centos的镜像，但是如果我们直接run的话，docker会自动从网上将centos的镜像拉取下来，并加载成容器，其中的`-d`参数会使当前的容器转为后台执行，这样我们可以继续进行其他操作，我们可以使用命令来查看一下容器状态。
 
 ![](../.gitbook/assets/docker-centos-ps.png)
 
@@ -48,7 +50,7 @@ docker exec -it b6a /bin/bash
 
 ![](../.gitbook/assets/centos-ls.png)
 
-进入容器之后我们就可以配置我们需要的环境或者安装需要的服务。
+进入容器之后我们就可以对容器内的一些环境做一些修改。
 
 在终端中输入`exit`退出容器。
 
