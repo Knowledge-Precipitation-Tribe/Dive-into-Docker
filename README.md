@@ -35,17 +35,17 @@ _注：建议使用Linux系统，这样更贴近生产环境。可以使用云�
 您可以通过以下方式使用本书：
 
 * Github地址：[https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker](https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker)
-* gitbook在线浏览：[https://supeng842499467.gitbook.io/dive-into-docker/](https://supeng842499467.gitbook.io/dive-into-docker/)
+* GitBook在线浏览：[https://supeng842499467.gitbook.io/dive-into-docker/](https://supeng842499467.gitbook.io/dive-into-docker/)
 
-### 快速开始：
+### 快速开始
 
-有以下集中方式可以快速搭建起开发环境：
+有以下几种方式可以快速搭建起开发环境：
 
-* 使用Vagrant+VatrulBox或Vmware等搭建虚拟环境，使用vagrant方式可以参考：[https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster](https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster)
+* 使用Vagrant+VirtualBox或Vmware等搭建虚拟环境，使用vagrant方式可以参考：[https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster](https://github.com/rootsongjc/kubernetes-vagrant-centos-cluster)
 * 使用云服务器搭建开发环境
 * 使用自己的电脑搭建开发环境
-* 使用Docker playground: [https://labs.play-with-docker.com/](https://labs.play-with-docker.com/)
-* 使用k8s palyground: [https://labs.play-with-k8s.com/](https://labs.play-with-k8s.com/)
+* 使用Docker playground\(有时间限制\): [https://labs.play-with-docker.com/](https://labs.play-with-docker.com/)
+* 使用k8s playground\(有时间限制\): [https://labs.play-with-k8s.com/](https://labs.play-with-k8s.com/)
 
 ### 推荐
 
