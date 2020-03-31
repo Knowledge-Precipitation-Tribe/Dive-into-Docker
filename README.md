@@ -12,9 +12,9 @@ description: 动手学Docker
 
 ![](.gitbook/assets/docker_logo.png)
 
-{% hint style="info" %}
+
+
 _注：建议使用Linux系统，这样更贴近生产环境。可以使用云服务器或者虚拟机等_
-{% endhint %}
 
 ### 开始之前
 
