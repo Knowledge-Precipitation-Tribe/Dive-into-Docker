@@ -6,7 +6,13 @@
 docker-compose up
 ```
 
-命令后会自动接一个默认值`-f docker-compose.yml`，也就是默认是使用docker-compose.yml文件的,但是直接通过这种方式的话会直接将启动时的输出打印到终端，所以我们常会加上`-d`参数。
+命令后会自动接一个默认值`-f docker-compose.yml`，也就是默认是使用docker-compose.yml文件的。我们也可以给文件起名为`docke-test.yml`，这样在使用时指定文件名，但是为了符合规范，还是统一为`docker-compose.yml`。
+
+```bash
+docker-compose up -f docer-test.yml
+```
+
+但是直接通过这种方式的话会直接将启动时的输出打印到终端，所以我们常会加上`-d`参数。
 
 ```bash
 docker-compose up -d
