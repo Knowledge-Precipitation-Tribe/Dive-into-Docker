@@ -1,6 +1,7 @@
 {
     "plugins": [
         "-lunr", "-search", "search-pro",
+        "-sharing",
         "back-to-top-button",
         "chapter-fold",
         "code",
@@ -11,7 +12,8 @@
         "accordion",
         "click-reveal",
         "pageview-count",
-        "github"
+        "github",
+        "github-buttons"
     ],
     "pluginsConfig": {
         "tbfed-pagefooter": {
@@ -25,6 +27,24 @@
         },
         "github": {
             "url": "https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker"
-        }
+        },
+        "github-buttons": {
+            "buttons": [
+              {
+                "user": "Subranium",
+                "repo": "dive-into-docker", 
+                "type": "star",
+                "count": true,
+                "size": "small"
+              }, 
+              {
+                "user": "Subranium",
+                "width": "160", 
+                "type": "follow", 
+                "count": true,
+                "size": "small"
+              }
+            ]
+            }
     }
 }
