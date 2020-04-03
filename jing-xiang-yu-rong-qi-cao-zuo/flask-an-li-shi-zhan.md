@@ -2,6 +2,8 @@
 
 本案例我们使用python的flask框架搭建一个简易的可访问的网站。
 
+### 编写python文件
+
 首先编写python程序，文件名为app.py
 
 ```python
@@ -13,6 +15,8 @@ def hello():
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
 ```
+
+### 编写Dockerfile
 
 之后编写Dockerfile文件
 
@@ -32,11 +36,15 @@ CMD ["python", "app.py"]
 
 ![](../.gitbook/assets/flask-hello-world.png)
 
+### 构建镜像
+
 然后构建一下镜像，需要一段时间。
 
 ```bash
 docker build -t superssssss/flask-hello .
 ```
+
+### 加载容器
 
 然后我们将镜像加载为容器运行
 
@@ -44,7 +52,7 @@ docker build -t superssssss/flask-hello .
 docker run -d -p 5000:5000 superssssss/flask-hello
 ```
 
-`-p`参数将容器的5000端口映射到电脑的5000端口，这样通过`电脑的ip地址:5000`就可以访问这个容器提供的服务了。
+`-p`参数将容器的5000[端口映射](../docker-wang-luo/docker-duan-kou-ying-she.md)到电脑的5000端口，这样通过`电脑的ip地址:5000`就可以访问这个容器提供的服务了。
 
 ![](../.gitbook/assets/flask-hello-docker.png)
 

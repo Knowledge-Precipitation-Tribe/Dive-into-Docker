@@ -1,14 +1,14 @@
 # Gitlab CI
 
-### **安装gitlab ci runner**
+GitLab CI/CD是一个内置在GitLab中的强大工具，它允许您将所有的持续方法\(持续集成、交付和部署\)应用到您的软件中，而不需要第三方应用程序或集成。
 
-\(1\) 安装docker
+### 安装docker
 
 ```bash
 curl -sSL https://get.docker.com/ | sh
 ```
 
-\(2\) 安装gitlab ci runner
+### 安装gitlab ci runner
 
 ```bash
 sudo gitlab-ci-multi-runner status
@@ -16,7 +16,7 @@ sudo gitlab-ci-multi-runner status
 
 应该输出：gitlab-runner: Service is running!
 
-\(3\) 设置docker权限
+### 设置docker权限
 
 为了能让gitlab-runner能正确的执行docker命令，需要把gitlab-runner用户添加到docker group里, 然后重启docker和gitlab ci runner
 

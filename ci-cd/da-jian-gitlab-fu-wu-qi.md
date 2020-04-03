@@ -6,7 +6,7 @@
 $ uname -a
 ```
 
-（1）首先安装依赖软件
+### 首先安装依赖软件
 
 ```bash
 sudo yum install -y git vim gcc glibc-static telnet
@@ -19,7 +19,7 @@ sudo systemctl enable postfix
 sudo systemctl start postfix
 ```
 
-（2）设置gitlab的安装源
+### 配置gitlab的安装源
 
 新建 /etc/yum.repos.d/gitlab-ce.repo，内容为
 
@@ -31,7 +31,7 @@ gpgcheck=0
 enabled=1
 ```
 
-（3）安装gitlab
+### 安装gitlab
 
 如果你有自己域名的话，在安装时可以直接将你自己的域名替换`http://gitlab.example.com`，将自己的域名设置为访问的URL。
 
@@ -53,7 +53,15 @@ sudo yum install -y gitlab-ce
 sudo gitlab-ctl reconfigure
 ```
 
-（4）登陆并修改密码
+{% hint style="info" %}
+_注：若在云服务器上搭建的话记得配置安全组，开放对应的端口_
+{% endhint %}
+
+{% hint style="info" %}
+_注：在本地的Linux服务器上搭建的话要打开防火墙_
+{% endhint %}
+
+### 登陆并修改密码
 
 因为我没有配置域名，所以直接使用的公网IP进行登陆，因为需要一定的配置时间，所以你立刻访问的话可能显示的是nginx页面，稍等一会在访问就可以看到如下界面
 

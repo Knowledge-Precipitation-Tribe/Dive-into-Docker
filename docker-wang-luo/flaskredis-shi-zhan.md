@@ -2,11 +2,15 @@
 
 我们这个应用是使用flask搭建一个应用，这个应用是我们每访问一次网址就会在redis的数据库上加1。
 
+### 创建redis服务
+
 首先我们创建一个启动redis服务的容器
 
 ```bash
 docker run -d --name redis redis
 ```
+
+### 编写python文件
 
 之后我们编写一下python文件，名字叫做app.py
 
@@ -32,6 +36,8 @@ if __name__ == "__main__":
 ```
 {% endcode %}
 
+### 创建Dockerfile
+
 再创建Dockerfile，并编辑里面的内容
 
 {% code title="Dockerfile" %}
@@ -45,11 +51,15 @@ CMD [ "python", "app.py" ]
 ```
 {% endcode %}
 
+### 构建镜像
+
 然后根据Dockerfile创建我们自己的镜像
 
 ```bash
 docker build -t su/flask-redis .
 ```
+
+### 加载容器
 
 最后将我们自己创建的镜像加载成容器对外提供服务，并且将容器的5000端口映射到服务器的5000端口
 

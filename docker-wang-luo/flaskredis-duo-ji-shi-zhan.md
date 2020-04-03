@@ -4,6 +4,8 @@
 
 首先准备两台服务器，我这里准备了两台服务器分别是node1和node2，他们的ip地址分别是：`192.168.205.10`和`192.168.205.11`
 
+### 安装etcd服务
+
 我们首先在两个节点上安装etcd服务。
 
 首先在node1节点上运行命令
@@ -41,7 +43,7 @@ vagrant@node2:~$ nohup ./etcd --name docker-node2 --initial-advertise-peer-urls 
 vagrant@node2:~/etcd-v3.0.12-linux-amd64$ ./etcdctl cluster-health
 ```
 
-接下来我们要重启docker服务
+### 重启docker服务
 
 在node1上运行命令
 
@@ -70,6 +72,8 @@ docker network create -d overlay demo
 ![](../.gitbook/assets/docker-node2-demo.png)
 
 我们虽然没有在node2上创建demo网络，但是通过etcd会同步的进行创建，这样我们两台服务器上都有了一个叫做demo的网络，接下来我们创建容器时就可以将demo作为容器的网络。
+
+### 加载容器
 
 首先在node2上创建redis容器
 
