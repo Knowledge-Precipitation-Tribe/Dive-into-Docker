@@ -1,6 +1,6 @@
 # Gitlab CI
 
-### **安装gitlab ci runner**
+GitLab CI/CD是一个内置在GitLab中的强大工具，它允许您将所有的持续方法\(持续集成、交付和部署\)应用到您的软件中，而不需要第三方应用程序或集成。
 
 ### 安装docker
 
