@@ -1,6 +1,6 @@
 # 搭建redis服务
 
-使用docker-compose的方式快速搭建起redis的开发环境
+使用docker-compose的方式快速搭建起redis的环境
 
 ### 编写yml文件
 
