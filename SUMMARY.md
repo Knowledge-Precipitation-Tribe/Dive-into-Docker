@@ -36,6 +36,7 @@
   * [Dcoker Compose基本使用](docker-duo-rong-qi-bu-shu/dcoker-compose-ji-ben-shi-yong.md)
   * [flask-redis Docker Compose实战](docker-duo-rong-qi-bu-shu/flaskredis-docker-compose-shi-zhan.md)
   * [负载均衡](docker-duo-rong-qi-bu-shu/fu-zai-jun-heng.md)
+  * [搭建redis服务](docker-duo-rong-qi-bu-shu/da-jian-redis-fu-wu.md)
 * [容器编排](rong-qi-bian-pai.md)
 * [CI/CD](ci-cd/README.md)
   * [搭建Gitlab服务器](ci-cd/da-jian-gitlab-fu-wu-qi.md)
