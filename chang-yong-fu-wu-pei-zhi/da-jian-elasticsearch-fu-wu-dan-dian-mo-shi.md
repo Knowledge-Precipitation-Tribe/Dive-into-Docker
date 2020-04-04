@@ -1,5 +1,7 @@
 # 搭建elasticsearch服务-单点模式
 
+
+
 {% code title="docker-compose.yml" %}
 ```text
 version: "3"
@@ -14,7 +16,7 @@ services:
     volumes: 
         - elastic-data:/data
     environment: 
-        discovery.type:single-node
+        - discovery.type=single-node
         
 volumes:
     elastic-data: 
