@@ -5,6 +5,7 @@
 * [为什么要用Docker](untitled.md)
 * [Docker安装](docker-an-zhuang.md)
 * [Docker初体验](docker-chu-ti-yan.md)
+* [PyCharm配置Docker](pycharm-pei-zhi-docker.md)
 * [Docker三大基本概念](docker-san-da-ji-ben-gai-nian/README.md)
   * [镜像Image](docker-san-da-ji-ben-gai-nian/jing-xiang-image.md)
   * [容器Container](docker-san-da-ji-ben-gai-nian/rong-qi-container.md)

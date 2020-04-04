@@ -6,7 +6,7 @@
 
 详情请参考官网：[Docker文档官网](https://docs.docker.com/)
 
-TODO：完善安装部分
+**TODO：完善安装部分，Nvidia-docker的安装。**
 
 国内可能在下载镜像时较慢，可以使用国内镜像加速：
 
