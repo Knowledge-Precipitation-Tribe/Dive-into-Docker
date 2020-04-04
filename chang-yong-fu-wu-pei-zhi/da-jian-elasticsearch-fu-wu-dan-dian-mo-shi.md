@@ -1,6 +1,6 @@
 # 搭建elasticsearch服务-单点模式
 
-
+安装中文分词插件
 
 {% code title="docker-compose.yml" %}
 ```text
