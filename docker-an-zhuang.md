@@ -1,5 +1,7 @@
 # Docker安装
 
+### 安装
+
 关于Docker的安装较为简单，mac和windows都有对应的安装包，Linux上也有每一步详细的安装步骤。
 
 ![](.gitbook/assets/docker_install.png)
@@ -29,4 +31,10 @@ $ sudo systemctl restart docker
 ```
 
 **若想要快速练习Docker，可以使用Docker在线版本：**[**Play with Docker**](https://labs.play-with-docker.com/)**，但是环境的保存时间有限。**
+
+### **可视化**
+
+最新版的Docker客户端提供了新的可视化功能，较之前的有了巨大的提升
+
+![](.gitbook/assets/docker-new.png)
 
