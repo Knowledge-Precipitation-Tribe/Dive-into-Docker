@@ -12,3 +12,25 @@ docker-compose --version
 
 ![](../.gitbook/assets/docker-compose-install.png)
 
+## Centos安装Docker-Compose
+
+### 获取Docker-compose发行版
+
+```bash
+sudo curl -L "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+```
+
+### 修改权限
+
+```bash
+sudo chmod +x /usr/local/bin/docker-compose
+```
+
+### 查看是否安装成功
+
+```bash
+docker-compose --version
+```
+
+![](../.gitbook/assets/docker-compose-version.png)
+

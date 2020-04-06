@@ -8,7 +8,62 @@
 
 详情请参考官网：[Docker文档官网](https://docs.docker.com/)
 
-**TODO：完善安装部分，Nvidia-docker的安装。**
+### Centos安装
+
+我们以centos为例进行docker的安装
+
+#### 卸载之前的版本
+
+```bash
+sudo yum remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-engine
+```
+
+### 安装docker依赖环境
+
+```bash
+sudo yum install -y yum-utils \
+  device-mapper-persistent-data \
+  lvm2
+```
+
+### 安装Docker引擎
+
+```bash
+sudo yum install docker-ce
+```
+
+### 启动Docker服务
+
+```bash
+sudo systemctl start docker
+```
+
+查看是否安装成功
+
+```bash
+docker --version
+```
+
+或者运行
+
+```bash
+sudo docker run hello-world
+```
+
+正确安装会有输出
+
+![](.gitbook/assets/docker-hello-world.png)
+
+**TODO：Nvidia-docker的安装。**
+
+### 国内镜像
 
 国内可能在下载镜像时较慢，可以使用国内镜像加速：
 
@@ -30,11 +85,9 @@ $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
 ```
 
-**若想要快速练习Docker，可以使用Docker在线版本：**[**Play with Docker**](https://labs.play-with-docker.com/)**，但是环境的保存时间有限。**
+### **Docker可视化**
 
-### **可视化**
-
-最新版的Docker客户端提供了新的可视化功能，较之前的有了巨大的提升
+最新版的Docker客户端提供了新的可视化功能，可以看到界面整洁干净了许多，更加方便易用。
 
 ![](.gitbook/assets/docker-new.png)
 
