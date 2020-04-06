@@ -8,11 +8,11 @@
 
 详情请参考官网：[Docker文档官网](https://docs.docker.com/)
 
-### Centos安装
+## Centos安装
 
 我们以centos为例进行docker的安装
 
-#### 卸载之前的版本
+### 卸载之前的版本
 
 ```bash
 sudo yum remove docker \
@@ -88,6 +88,8 @@ $ sudo systemctl restart docker
 ### **Docker可视化**
 
 最新版的Docker客户端提供了新的可视化功能，可以看到界面整洁干净了许多，更加方便易用。
+
+![](.gitbook/assets/docker-dash.png)
 
 ![](.gitbook/assets/docker-new.png)
 
