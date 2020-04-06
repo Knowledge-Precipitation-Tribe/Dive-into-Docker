@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # flask-redis多机实战
 
 接下来我们将之前的那个flask-redis实战转换为多机的实战

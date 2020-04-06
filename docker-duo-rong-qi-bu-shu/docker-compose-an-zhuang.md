@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # Docker Compose安装
 
 一般情况下在mac和windows上安装Docker时会自动安装docker-compose，Linux上需要手动安装。

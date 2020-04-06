@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # flask-redis实战
 
 我们这个应用是使用flask搭建一个应用，这个应用是我们每访问一次网址就会在redis的数据库上加1。

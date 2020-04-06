@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # Bind Mouting管理Volume
 
 接下来我们介绍下一种持久化的存储方式：Bind Mouting。这种方式不需要我们在Dockerfile中创建volume，而是在启动容器时直接指定服务器的文件路径和要映射容器内的文件路径。

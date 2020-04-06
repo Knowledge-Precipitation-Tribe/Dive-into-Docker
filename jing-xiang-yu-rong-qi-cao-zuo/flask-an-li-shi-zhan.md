@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # flask案例实战
 
 本案例我们使用python的flask框架搭建一个简易的可访问的网站。

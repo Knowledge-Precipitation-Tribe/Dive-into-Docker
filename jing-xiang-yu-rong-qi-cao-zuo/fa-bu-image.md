@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # 发布image
 
 为了将我们自己创建的image发布，我们需要在[Docker Hub](https://hub.docker.com/)上注册账号，并且在生成镜像时，-t后面要接Docker Hub用户名/镜像名称。我们已经生成了一个新的superssssss/hello world镜像。

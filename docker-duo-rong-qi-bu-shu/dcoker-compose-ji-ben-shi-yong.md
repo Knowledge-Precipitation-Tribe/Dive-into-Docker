@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # Dcoker Compose基本使用
 
 在创建好`docker-compose.yml`文件后，可以通过这个命令将文件中定义的容器都启动起来，在docker compose中我们更习惯于将每一个容器叫做service。

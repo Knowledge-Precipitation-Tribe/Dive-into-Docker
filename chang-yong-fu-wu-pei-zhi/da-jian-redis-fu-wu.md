@@ -1,3 +1,7 @@
+---
+description: 若对你有帮助欢迎Star⬆
+---
+
 # 搭建redis服务
 
 使用docker-compose的方式快速搭建起redis的环境
