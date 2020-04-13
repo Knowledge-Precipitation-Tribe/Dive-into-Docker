@@ -16,13 +16,11 @@ services:
 
   redis:
     image: redis
+    restart: always
     ports: 
         - "6379:6379"
     volumes: 
-        - redis-data:/data
-        
-volumes:
-    redis-data: 
+        - ./data: /data
 ```
 {% endcode %}
 
