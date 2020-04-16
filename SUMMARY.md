@@ -44,6 +44,7 @@
 * [容器编排](rong-qi-bian-pai.md)
 * [常用服务配置](chang-yong-fu-wu-pei-zhi/README.md)
   * [搭建redis服务](chang-yong-fu-wu-pei-zhi/da-jian-redis-fu-wu.md)
+  * [搭建redis服务-修改端口](chang-yong-fu-wu-pei-zhi/da-jian-redis-fu-wu-xiu-gai-duan-kou.md)
   * [搭建elasticsearch服务-单点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-dan-dian-mo-shi.md)
   * [搭建elasticsearch服务-多点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-duo-dian-mo-shi.md)
 * [CI/CD](ci-cd/README.md)
