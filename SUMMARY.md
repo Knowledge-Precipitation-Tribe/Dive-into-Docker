@@ -18,6 +18,7 @@
     * [Format](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/format.md)
     * [.dockerignore file](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/.dockerignore-file.md)
     * [FROM](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/from.md)
+    * [减小镜像体积](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/jian-xiao-jing-xiang-ti-ji.md)
   * [删除image](jing-xiang-yu-rong-qi-cao-zuo/shan-chu-image.md)
   * [发布image](jing-xiang-yu-rong-qi-cao-zuo/fa-bu-image.md)
   * [Docker Hub关联Github](jing-xiang-yu-rong-qi-cao-zuo/docker-hub-guan-lian-github.md)
