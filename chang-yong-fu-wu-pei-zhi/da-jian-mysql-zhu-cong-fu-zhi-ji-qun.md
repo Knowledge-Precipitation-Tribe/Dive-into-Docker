@@ -6,6 +6,7 @@
 
 {% code title="my.cnf" %}
 ```text
+[mysqld]
 log_bin = mysql-bin
 server_id = 10
 ```
@@ -18,12 +19,13 @@ FROM mysql:5.7
 ADD ./master/my.cnf /etc/mysql/my.cnf
 ```
 
-第二创建slave结点的Dockerfile
+## 第二创建slave结点的Dockerfile
 
 在编写之前我们先要创建一个配置slave结点my.cnf配置文件
 
 {% code title="my.cnf" %}
 ```text
+[mysqld]
 log_bin = mysql-bin
 server_id = 11
 relay_log = /var/lib/mysql/mysql-relay-bin
@@ -57,7 +59,8 @@ version: "3"
 services:
   db-master:
     build: 
-      context: ./master/
+      context: ./
+      dockerfile: master/Dockerfile
     restart: always
     environment:
       MYSQL_DATABASE: 'db'
@@ -78,7 +81,8 @@ services:
   
   db-slave:
     build: 
-      context: ./slave/
+      context: ./
+      dockerfile: slave/Dockerfile
     restart: always
     environment:
       MYSQL_DATABASE: 'db'
