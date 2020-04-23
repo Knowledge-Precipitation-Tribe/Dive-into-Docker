@@ -48,6 +48,7 @@
   * [搭建redis服务-修改端口](chang-yong-fu-wu-pei-zhi/da-jian-redis-fu-wu-xiu-gai-duan-kou.md)
   * [搭建elasticsearch服务-单点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-dan-dian-mo-shi.md)
   * [搭建elasticsearch服务-多点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-duo-dian-mo-shi.md)
+  * [搭建MySQL主从复制集群](chang-yong-fu-wu-pei-zhi/da-jian-mysql-zhu-cong-fu-zhi-ji-qun.md)
 * [CI/CD](ci-cd/README.md)
   * [搭建Gitlab服务器](ci-cd/da-jian-gitlab-fu-wu-qi.md)
   * [Gitlab CI](ci-cd/gitlab-ci.md)

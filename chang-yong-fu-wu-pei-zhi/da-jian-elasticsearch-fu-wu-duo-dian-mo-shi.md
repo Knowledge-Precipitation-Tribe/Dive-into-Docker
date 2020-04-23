@@ -4,8 +4,6 @@ description: 若对你有帮助欢迎Star⬆
 
 # 搭建elasticsearch服务-多点模式
 
-
-
 {% code title="docker-compose.yml" %}
 ```text
 version: '2.2'
