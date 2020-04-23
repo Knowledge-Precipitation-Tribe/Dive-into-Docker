@@ -112,3 +112,31 @@ networks:
 ```
 {% endcode %}
 
+## 主从配置
+
+启动之后进入从结点，在从结点上配置主节点信息，然后把当前结点设置为从结点。
+
+```text
+mysql> CHANGE MASTER TO MASTER_HOST='192.168.64.3', MASTER_USER='user', MASTER_PASSWORD='password', MASTER_LOG_FILE='mysql-bin.000001', MASTER_LOG_POS=0;
+Query OK, 0 rows affected, 2 warnings (0.11 sec)
+
+mysql> start slave;
+Query OK, 0 rows affected (0.00 sec)
+```
+
+现在查看一下从结点的状态
+
+```text
+mysql> show slave status\G;
+```
+
+
+
+现在我们在主节点创建数据库
+
+
+
+然后切换到从结点，可以看到数据已经同步到从结点了
+
+
+
