@@ -4,7 +4,7 @@
 
 ## 创建并修改redis.conf
 
-![](../.gitbook/assets/image.png)
+![](../.gitbook/assets/image%20%281%29.png)
 
 {% file src="../.gitbook/assets/redis.conf" %}
 
