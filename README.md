@@ -39,7 +39,7 @@ _注：建议使用Linux系统，这样更贴近生产环境。可以使用云�
 您可以通过以下方式使用本书：
 
 * Github地址：[https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker](https://github.com/Knowledge-Precipitation-Tribe/Dive-into-Docker)
-* GitBook在线浏览：[https://supeng842499467.gitbook.io/dive-into-docker/](https://supeng842499467.gitbook.io/dive-into-docker/)
+* GitBook在线浏览：[https://docs.docker.knowledge-precipitation.site/](https://docs.docker.knowledge-precipitation.site/)
 
 ### 快速开始
 
