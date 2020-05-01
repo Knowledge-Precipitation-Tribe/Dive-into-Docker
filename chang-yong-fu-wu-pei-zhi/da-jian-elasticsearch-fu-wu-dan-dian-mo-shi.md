@@ -7,7 +7,7 @@ description: 若对你有帮助欢迎Star⬆
 安装中文分词插件-待完善
 
 {% code title="docker-compose.yml" %}
-```text
+```yaml
 version: "3"
 
 services:

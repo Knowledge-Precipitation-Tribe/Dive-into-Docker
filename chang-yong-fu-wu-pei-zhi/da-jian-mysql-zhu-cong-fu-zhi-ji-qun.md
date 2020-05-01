@@ -54,7 +54,7 @@ ADD ./slave/my.cnf /etc/mysql/my.cnf
 其中master文件夹存放关于master结点的my.cnf和Dockerfile，slave文件夹存放关于slave结点的my.cnf和Dockerfile。
 
 {% code title="docker-compose.yml" %}
-```text
+```yaml
 version: "3"
 services:
   db-master:

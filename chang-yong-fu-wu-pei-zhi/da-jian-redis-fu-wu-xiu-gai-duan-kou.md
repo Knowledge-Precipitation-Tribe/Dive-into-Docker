@@ -18,7 +18,7 @@ CMD [ "redis-server", "/usr/local/etc/redis/redis.conf" ]
 
 ## 创建docker-compose.yml
 
-```text
+```yaml
 version: "3"
 
 services:

@@ -9,7 +9,7 @@ description: 若对你有帮助欢迎Star⬆
 ### 编写yml文件
 
 {% code title="docker-compose.yml" %}
-```text
+```yaml
 version: "3"
 
 services:
