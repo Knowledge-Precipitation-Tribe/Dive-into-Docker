@@ -1,28 +1,20 @@
 # 搭建RabbitMQ服务
 
-{% code title="docker-compose.yml" %}
-```yaml
-version: "3"
+在命令行输入以下命令
 
-services:
+首先创建文件用于数据持久化
 
-  rabbitmq:
-    image: rabbitmq:management
-    hostname: myrabbitmq
-    ports: 
-        - "5672:5672"
-        - "15672:15672"
-    volumes: 
-        - rabbitmq-data:/var/lib/rabbitmq
-        
-volumes:
-    rabbitmq-data: 
+```text
+mkdir -p /www/rabbitmq
 ```
-{% endcode %}
+
+```text
+docker run -d --hostname rabbit-node1 --name rabbit-node1 -p 5671:5672 -p 15672:15672 -v /www/rabbitmq:/var/lib/rabbitmq rabbitmq:management
+```
 
 查看服务状态
 
-![](../.gitbook/assets/image%20%286%29.png)
+![](../.gitbook/assets/image.png)
 
 确定服务正常启动后在浏览器输入网址[http://localhost:15672](http://localhost:15672/#/)，进入RabbitMQ的登陆界面
 
