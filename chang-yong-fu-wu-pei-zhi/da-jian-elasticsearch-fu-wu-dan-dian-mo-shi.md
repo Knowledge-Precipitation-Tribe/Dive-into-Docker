@@ -4,7 +4,7 @@ description: 若对你有帮助欢迎Star⬆
 
 # 搭建elasticsearch服务-单点模式
 
-安装中文分词插件
+安装中文分词插件-待完善
 
 {% code title="docker-compose.yml" %}
 ```text

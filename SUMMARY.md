@@ -49,6 +49,7 @@
   * [搭建redis服务-修改端口](chang-yong-fu-wu-pei-zhi/da-jian-redis-fu-wu-xiu-gai-duan-kou.md)
   * [搭建elasticsearch服务-单点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-dan-dian-mo-shi.md)
   * [搭建elasticsearch服务-多点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-duo-dian-mo-shi.md)
+  * [搭建RabbitMQ服务](chang-yong-fu-wu-pei-zhi/da-jian-rabbitmq-fu-wu.md)
 * [参考文献](can-kao-wen-xian.md)
 * [答疑汇总](da-yi-hui-zong.md)
 
