@@ -52,6 +52,7 @@
   * [搭建RabbitMQ服务](chang-yong-fu-wu-pei-zhi/da-jian-rabbitmq-fu-wu.md)
 * [常用服务配置-docker方式](chang-yong-fu-wu-pei-zhi-docker-fang-shi/README.md)
   * [搭建RabbitMQ服务](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-rabbitmq-fu-wu.md)
+  * [搭建服务注册发现中心consul集群](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-fu-wu-zhu-ce-fa-xian-zhong-xin-consul-ji-qun.md)
 * [参考文献](can-kao-wen-xian.md)
 * [答疑汇总](da-yi-hui-zong.md)
 

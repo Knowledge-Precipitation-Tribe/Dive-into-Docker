@@ -49,7 +49,7 @@ ADD ./slave/my.cnf /etc/mysql/my.cnf
 
 我们创建这样一个目录结构
 
-![](../.gitbook/assets/image%20%284%29.png)
+![](../.gitbook/assets/image%20%286%29.png)
 
 其中master文件夹存放关于master结点的my.cnf和Dockerfile，slave文件夹存放关于slave结点的my.cnf和Dockerfile。
 
@@ -180,15 +180,15 @@ Query OK, 0 rows affected (0.00 sec)
 mysql> show slave status\G;
 ```
 
-![](../.gitbook/assets/image%20%283%29.png)
+![](../.gitbook/assets/image%20%284%29.png)
 
 都显示为YES的话那么我们的主从配置已经成功，现在我们在主节点创建一个test\_db3数据库
 
-![](../.gitbook/assets/image%20%285%29.png)
+![](../.gitbook/assets/image%20%288%29.png)
 
 然后切换到从结点，可以看到数据已经同步到从结点了
 
-![](../.gitbook/assets/image%20%281%29.png)
+![](../.gitbook/assets/image%20%282%29.png)
 
 到这里一个简单的单主节点单从结点的MySQL架构已经搭建完毕。
 
