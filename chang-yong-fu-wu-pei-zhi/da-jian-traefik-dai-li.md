@@ -22,3 +22,13 @@ networks:
       name: fileserver
 ```
 
+编写traefik.toml文件
+
+```text
+defaultEntryPoints = ["http"]
+insecureSkipVerify = true
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+```
+
