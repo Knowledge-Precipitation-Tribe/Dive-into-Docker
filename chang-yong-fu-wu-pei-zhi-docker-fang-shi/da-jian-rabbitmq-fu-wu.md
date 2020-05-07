@@ -22,7 +22,7 @@ docker run -d --hostname rabbit-node1 --name rabbit-node1 -p 5671:5672 -p 15672:
 
 默认用户名密码都是guest。登陆之后就可以进入到主界面了
 
-![](../.gitbook/assets/image%20%2811%29.png)
+![](../.gitbook/assets/image%20%2812%29.png)
 
 
 
