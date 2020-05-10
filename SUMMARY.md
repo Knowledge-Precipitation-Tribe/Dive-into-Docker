@@ -21,6 +21,7 @@
     * [减小镜像体积](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/jian-xiao-jing-xiang-ti-ji.md)
   * [删除image](jing-xiang-yu-rong-qi-cao-zuo/shan-chu-image.md)
   * [发布image](jing-xiang-yu-rong-qi-cao-zuo/fa-bu-image.md)
+  * [减少image大小](jing-xiang-yu-rong-qi-cao-zuo/jian-shao-image-da-xiao.md)
   * [Docker Hub关联Github](jing-xiang-yu-rong-qi-cao-zuo/docker-hub-guan-lian-github.md)
   * [生成container并进入container](jing-xiang-yu-rong-qi-cao-zuo/sheng-cheng-container-bing-jin-ru-container.md)
   * [停止和重启container](jing-xiang-yu-rong-qi-cao-zuo/ting-zhi-he-zhong-qi-container.md)
@@ -55,6 +56,6 @@
   * [搭建RabbitMQ服务](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-rabbitmq-fu-wu.md)
   * [搭建服务注册发现中心consul集群](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-fu-wu-zhu-ce-fa-xian-zhong-xin-consul-ji-qun.md)
   * [搭建traefik代理](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-traefik.md)
-* [参考文献](can-kao-wen-xian.md)
 * [答疑汇总](da-yi-hui-zong.md)
+* [参考文献](can-kao-wen-xian.md)
 
