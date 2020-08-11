@@ -52,6 +52,7 @@
   * [搭建elasticsearch服务-多点模式](chang-yong-fu-wu-pei-zhi/da-jian-elasticsearch-fu-wu-duo-dian-mo-shi.md)
   * [搭建RabbitMQ服务](chang-yong-fu-wu-pei-zhi/da-jian-rabbitmq-fu-wu.md)
   * [搭建traefik代理](chang-yong-fu-wu-pei-zhi/da-jian-traefik-dai-li.md)
+  * [etcd-cluster](chang-yong-fu-wu-pei-zhi/etcd-cluster.md)
 * [常用服务配置-docker方式](chang-yong-fu-wu-pei-zhi-docker-fang-shi/README.md)
   * [搭建RabbitMQ服务](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-rabbitmq-fu-wu.md)
   * [搭建服务注册发现中心consul集群](chang-yong-fu-wu-pei-zhi-docker-fang-shi/da-jian-fu-wu-zhu-ce-fa-xian-zhong-xin-consul-ji-qun.md)
