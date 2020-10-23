@@ -18,7 +18,7 @@
     * [Format](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/format.md)
     * [.dockerignore file](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/.dockerignore-file.md)
     * [FROM](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/from.md)
-    * [减小镜像体积](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/jian-xiao-jing-xiang-ti-ji.md)
+    * [推荐阅读](jing-xiang-yu-rong-qi-cao-zuo/dockerfile/tui-jian-yue-du.md)
   * [删除image](jing-xiang-yu-rong-qi-cao-zuo/shan-chu-image.md)
   * [发布image](jing-xiang-yu-rong-qi-cao-zuo/fa-bu-image.md)
   * [减少image大小](jing-xiang-yu-rong-qi-cao-zuo/jian-shao-image-da-xiao.md)
