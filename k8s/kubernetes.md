@@ -80,5 +80,3 @@ Kubemetes 使开发者可以自主部署应用，并且控制部署的频率，�
 
 {% embed url="https://mp.weixin.qq.com/s/aC6NDfQm6Gm4sWsr1izURg" %}
 
-
-
