@@ -103,14 +103,15 @@ Server Version: version.Info{Major:"1", Minor:"21", GitVersion:"v1.21.2", GitCom
 Kubernetes v1.21.2
 ```
 
-然后将其中一台服务器作为master，执行初始化集群操作
+然后将其中一台服务器作为master，执行初始化集群操作（只需要在master服务器执行下面的操作即可）
 
 其中
 
-
+* --pod-network-cidr: 为使用的网段
+* --apiserver-advertise-address: 为master服务器的ip地址，需要注意的是三台服务器之间需要相互ping通才可以
 
 ```bash
-[root@centos ~]$ sudo kubeadm init --pod-network-cidr 172.100.0.0/16 --apiserver-advertise-address 192.168.205.120
+[root@centos ~]$ sudo kubeadm init --pod-network-cidr 172.100.0.0/16 --apiserver-advertise-address xxx.xxx.xxx.xxx
 [init] Using Kubernetes version: v1.15.3
 [preflight] Running pre-flight checks
 	[WARNING Service-Docker]: docker service is not enabled, please run 'systemctl enable docker.service'
@@ -178,12 +179,103 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 
 Then you can join any number of worker nodes by running the following on each as root:
 
-kubeadm join 192.168.205.120:6443 --token snipoh.vxfykjsi7e7rbtna \
+kubeadm join xxx.xxx.xxx.xxx:6443 --token snipoh.vxfykjsi7e7rbtna \
     --discovery-token-ca-cert-hash sha256:e202fbfa3eed1e1d6c646dd568285947d67e99b51e824c99aeb6f45080d284c1
-[vagrant@k8s-master ~]$
 ```
 
+如果服务器最后的输出结果如上所示，那么代表集群已经初始化成功了。
 
+> 需要保存好下面这个字符串，另外的服务器会通过它来加入集群
+>
+> ```bash
+> kubeadm join xxx.xxx.xxx.xxx:6443 --token snipoh.vxfykjsi7e7rbtna \
+>     --discovery-token-ca-cert-hash sha256:e202fbfa3eed1e1d6c646dd568285947d67e99b51e824c99aeb6f45080d284c1
+> ```
+
+还需要执行下面的命令：
+
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+
+然后通过kubectl检查pod状态
+
+```bash
+[root@centos ~]$ kubectl get pod --all-namespaces
+NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
+kube-system   coredns-5c98db65d4-f4kjf             0/1     Pending   0          58m
+kube-system   coredns-5c98db65d4-xqpwd             0/1     Pending   0          58m
+kube-system   etcd-k8s-master                      1/1     Running   0          57m
+kube-system   kube-apiserver-k8s-master            1/1     Running   0          57m
+kube-system   kube-controller-manager-k8s-master   1/1     Running   0          57m
+kube-system   kube-proxy-9l9vr                     1/1     Running   0          58m
+kube-system   kube-scheduler-k8s-master            1/1     Running   0          57m
+```
+
+终端会输出类似这样的结果，其中两个仍处于pending状态，这是由于没有添加网络插件导致的，通过下面的命令即可添加网络插件
+
+```bash
+kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
+```
+
+命令执行后过一段时间再检查pod状态就可以发现全部运行了，如下
+
+```bash
+[root@centos ~]$ kubectl get pod --all-namespaces
+NAMESPACE     NAME                                 READY   STATUS    RESTARTS   AGE
+kube-system   coredns-5c98db65d4-gpsvq             1/1     Running   0          7h31m
+kube-system   coredns-5c98db65d4-st4pf             1/1     Running   0          7h31m
+kube-system   etcd-k8s-master                      1/1     Running   0          7h30m
+kube-system   kube-apiserver-k8s-master            1/1     Running   0          7h30m
+kube-system   kube-controller-manager-k8s-master   1/1     Running   0          7h30m
+kube-system   kube-proxy-kx5mv                     1/1     Running   0          7h31m
+kube-system   kube-scheduler-k8s-master            1/1     Running   0          7h30m
+kube-system   weave-net-57dtf                      2/2     Running   0          59s=
+```
+
+再查看当前node状态，可以发现只有master节点在集群当中
+
+```bash
+[root@centos ~]$ kubectl get nodes
+NAME                           STATUS   ROLES                  AGE   VERSION
+copy-of-vm-ee-centos76-v1.05   Ready    control-plane,master   16h   v1.21.2
+```
+
+接下来在另外两台服务器执行下面的命令：
+
+```bash
+# 可以通过 --node-name 来自己指定添加到k8s集群的名称
+# 这里的字符串为master节点初始化集群后的输出
+[root@centos ~]$ sudo kubeadm join xxx.xxx.xxx.xxx:6443 --token tte278.145ozal6u6e26ypm --discovery-token-ca-cert-hash sha256:cbb168e0665fe1b14e96a87c2da5dc1eeda04c70932ac1913d989753703277bb
+[preflight] Running pre-flight checks
+	[WARNING IsDockerSystemdCheck]: detected "cgroupfs" as the Docker cgroup driver. The recommended driver is "systemd". Please follow the guide at https://kubernetes.io/docs/setup/cri/
+	[WARNING SystemVerification]: this Docker version is not on the list of validated versions: 19.03.1. Latest validated version: 18.09
+[preflight] Reading configuration from the cluster...
+[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -oyaml'
+[kubelet-start] Downloading configuration for the kubelet from the "kubelet-config-1.15" ConfigMap in the kube-system namespace
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Activating the kubelet service
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
+
+This node has joined the cluster:
+* Certificate signing request was sent to apiserver and a response was received.
+* The Kubelet was informed of the new secure connection details.
+
+Run 'kubectl get nodes' on the control-plane to see this node join the cluster.
+```
+
+两台服务器都执行成功后，在master节点查看node状态即可发现另外两个节点已经添加到集群中了
+
+```bash
+[root@centos ~]$ kubectl get nodes
+NAME                           STATUS   ROLES                  AGE   VERSION
+copy-of-vm-ee-centos76-v1.05   Ready    control-plane,master   16h   v1.21.2
+k8s-node1                      Ready    <none>                 16h   v1.21.2
+k8s-node2                      Ready    <none>                 16h   v1.21.2
+```
 
 ## 新手推荐
 
